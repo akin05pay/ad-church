@@ -68,8 +68,12 @@ O AD Church não deve duplicar plataformas maduras. YouTube continua transmitind
 6. Lembretes e notificações.
 7. Importação/sincronização opcional de agenda do assembleia.online, se houver API/feed autorizado.
 
-## Fase 4 — Beta congregacional Setor 04 — PRÓXIMA
+## Fase 4 — Beta congregacional Setor 04 — EM ANDAMENTO
 
+- Administração de pessoas e vínculos por escopo.
+- Cadastro manual de pessoa sem obrigar conta de login.
+- Tipos de vínculo: visitante, frequentador, novo convertido, membro, obreiro e líder.
+- Ativação, inativação e transferência entre congregações com auditoria.
 - Carregar cadastro oficial das 43 congregações.
 - Carregar/reconciliar membros.
 - Minha Igreja personalizada.
