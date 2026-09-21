@@ -569,6 +569,85 @@ export type Database = {
           },
         ]
       }
+      online_meetings: {
+        Row: {
+          active: boolean
+          created_at: string
+          created_by: string | null
+          description: string | null
+          ends_at: string | null
+          id: string
+          join_url: string
+          ministry_id: string | null
+          organization_id: string
+          platform: string
+          starts_at: string
+          status: string
+          title: string
+          unit_id: string | null
+          updated_at: string
+          visibility: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          ends_at?: string | null
+          id?: string
+          join_url: string
+          ministry_id?: string | null
+          organization_id: string
+          platform: string
+          starts_at: string
+          status?: string
+          title: string
+          unit_id?: string | null
+          updated_at?: string
+          visibility?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          ends_at?: string | null
+          id?: string
+          join_url?: string
+          ministry_id?: string | null
+          organization_id?: string
+          platform?: string
+          starts_at?: string
+          status?: string
+          title?: string
+          unit_id?: string | null
+          updated_at?: string
+          visibility?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "online_meetings_ministry_id_fkey"
+            columns: ["ministry_id"]
+            isOneToOne: false
+            referencedRelation: "ministries"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "online_meetings_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "online_meetings_unit_id_fkey"
+            columns: ["unit_id"]
+            isOneToOne: false
+            referencedRelation: "units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       organizations: {
         Row: {
           created_at: string
