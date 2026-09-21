@@ -1,0 +1,3 @@
+codigo_membro,nome,email,telefone,data_nascimento,congregacao,congregacao_slug
+EX-001,Pessoa Exemplo 1,pessoa1@example.invalid,11999990001,1990-01-15,Congregação Exemplo,congregacao-exemplo
+EX-002,Pessoa Exemplo 2,pessoa2@example.invalid,11999990002,22/08/1985,Congregação Exemplo,congregacao-exemplo

@@ -1,0 +1,14 @@
+name: Vercel Preview
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Vercel Git integration
+        run: echo "Preview deployments are handled by the Vercel GitHub integration."
