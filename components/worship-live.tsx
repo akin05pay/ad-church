@@ -2,7 +2,10 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/client";
+import {
+  createClient,
+  isSupabaseBrowserConfigured,
+} from "@/lib/supabase/client";
 
 type WorshipSession = {
   id: string;
@@ -34,12 +37,19 @@ type WorshipItem = {
 };
 
 export function WorshipLive() {
-  const supabase = useMemo(() => createClient(), []);
+  const configured = isSupabaseBrowserConfigured();
+  const supabase = useMemo(() => (configured ? createClient() : null), [configured]);
+
   const [session, setSession] = useState<WorshipSession | null>(null);
   const [items, setItems] = useState<WorshipItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(configured);
 
   const load = useCallback(async () => {
+    if (!supabase) {
+      setLoading(false);
+      return;
+    }
+
     const { data: liveSession } = await supabase
       .from("worship_sessions")
       .select("id,title,public_slug,starts_at")
@@ -72,12 +82,25 @@ export function WorshipLive() {
   }, [supabase]);
 
   useEffect(() => {
+    if (!supabase) {
+      setLoading(false);
+      return;
+    }
+
     void load();
 
     const channel = supabase
       .channel("public-worship-live")
-      .on("postgres_changes", { event: "*", schema: "public", table: "worship_sessions" }, () => void load())
-      .on("postgres_changes", { event: "*", schema: "public", table: "worship_items" }, () => void load())
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "worship_sessions" },
+        () => void load(),
+      )
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "worship_items" },
+        () => void load(),
+      )
       .subscribe();
 
     return () => {
@@ -88,8 +111,43 @@ export function WorshipLive() {
   const scripture = items.find((item) => item.item_type === "scripture") ?? null;
   const hymn = items.find((item) => item.item_type === "hymn") ?? null;
 
+  if (!configured) {
+    return (
+      <>
+        <div className="notice">
+          <strong>Modo de demonstração</strong>
+          <span>
+            A interface pública está funcionando. O Realtime será ativado automaticamente
+            quando as variáveis do Supabase forem configuradas na Vercel.
+          </span>
+        </div>
+
+        <div className="worshipGrid">
+          <article className="worshipCard">
+            <span className="cardLabel">LEITURA DE EXEMPLO</span>
+            <h2>João 3:16</h2>
+            <p>Abra o leitor bíblico para navegar pelo capítulo e pelos versículos.</p>
+            <Link href="/biblia/joao/3?v=16">Abrir leitor bíblico →</Link>
+          </article>
+
+          <article className="worshipCard">
+            <span className="cardLabel">HARPA CRISTÃ</span>
+            <h2>291 · A Mensagem da Cruz</h2>
+            <p>Exemplo visual do acompanhamento de louvor no Modo Culto.</p>
+            <Link href="/hinarios">Abrir Harpa Cristã →</Link>
+          </article>
+        </div>
+      </>
+    );
+  }
+
   if (loading) {
-    return <div className="notice"><strong>Conectando ao culto…</strong><span>Buscando a sessão pública ativa.</span></div>;
+    return (
+      <div className="notice">
+        <strong>Conectando ao culto…</strong>
+        <span>Buscando a sessão pública ativa.</span>
+      </div>
+    );
   }
 
   if (!session) {
@@ -115,15 +173,23 @@ export function WorshipLive() {
             <>
               <h2>
                 {scripture.scripture_passages.book} {scripture.scripture_passages.chapter}
-                {scripture.scripture_passages.verse_start ? `:${scripture.scripture_passages.verse_start}` : ""}
-                {scripture.scripture_passages.verse_end && scripture.scripture_passages.verse_end !== scripture.scripture_passages.verse_start
+                {scripture.scripture_passages.verse_start
+                  ? `:${scripture.scripture_passages.verse_start}`
+                  : ""}
+                {scripture.scripture_passages.verse_end &&
+                scripture.scripture_passages.verse_end !== scripture.scripture_passages.verse_start
                   ? `–${scripture.scripture_passages.verse_end}`
                   : ""}
               </h2>
-              {scripture.scripture_passages.content_text && <p>{scripture.scripture_passages.content_text}</p>}
+              {scripture.scripture_passages.content_text && (
+                <p>{scripture.scripture_passages.content_text}</p>
+              )}
             </>
           ) : (
-            <><h2>Aguardando referência</h2><p>O operador ainda não definiu uma passagem atual.</p></>
+            <>
+              <h2>Aguardando referência</h2>
+              <p>O operador ainda não definiu uma passagem atual.</p>
+            </>
           )}
           <Link href="/biblia">Abrir leitor bíblico →</Link>
         </article>
@@ -132,11 +198,17 @@ export function WorshipLive() {
           <span className="cardLabel">HINO ATUAL</span>
           {hymn?.hymns ? (
             <>
-              <h2>{hymn.hymns.hymn_number ? `${hymn.hymns.hymn_number} · ` : ""}{hymn.hymns.title}</h2>
+              <h2>
+                {hymn.hymns.hymn_number ? `${hymn.hymns.hymn_number} · ` : ""}
+                {hymn.hymns.title}
+              </h2>
               {hymn.hymns.lyrics_text && <p>{hymn.hymns.lyrics_text}</p>}
             </>
           ) : (
-            <><h2>Aguardando hino</h2><p>O operador ainda não definiu um hino atual.</p></>
+            <>
+              <h2>Aguardando hino</h2>
+              <p>O operador ainda não definiu um hino atual.</p>
+            </>
           )}
           <Link href="/hinarios">Abrir hinários →</Link>
         </article>
