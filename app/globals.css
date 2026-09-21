@@ -1189,3 +1189,78 @@ button, input, select { font: inherit; }
   .operatorBibleForm .operatorWide { grid-column:1/-1; }
   .worshipPublicLink button { width:100%; }
 }
+
+
+/* Governance 0.6 */
+.governanceShell { width:min(1240px,calc(100% - 30px)); }
+.governanceHero {
+  margin-top:26px;
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr);
+  gap:18px;
+  padding:26px;
+  border-radius:20px;
+  background:linear-gradient(125deg,#0b2447,#173e61);
+  color:white;
+}
+.governanceHero > div:first-child { display:flex; flex-direction:column; gap:9px; justify-content:center; }
+.governanceHero > div:first-child > span { color:#dec57e; font-size:9px; font-weight:900; letter-spacing:.12em; }
+.governanceHero > div:first-child > strong { font-size:clamp(28px,4vw,48px); letter-spacing:-.045em; }
+.governanceHero > div:first-child > small { max-width:650px; color:#b9c6d2; line-height:1.55; }
+.governanceScale { border-top:1px solid rgba(255,255,255,.16); }
+.governanceScale span {
+  min-height:42px; display:flex; align-items:center; gap:12px;
+  border-bottom:1px solid rgba(255,255,255,.13); color:#c3ced8; font-size:11px;
+}
+.governanceScale b { width:68px; color:#e3ca84; }
+.governanceGrid { display:grid; grid-template-columns:minmax(320px,.8fr) minmax(0,1.2fr); gap:14px; margin-top:14px; }
+.governanceHint { margin:0; color:#77828c; font-size:11px; line-height:1.5; }
+.governanceList { display:grid; gap:8px; }
+.governanceRow {
+  min-height:78px; display:grid; grid-template-columns:minmax(0,1fr) auto auto; gap:12px;
+  align-items:center; padding:12px 0; border-bottom:1px solid var(--line);
+}
+.governanceRow > div:first-child { display:flex; flex-direction:column; gap:4px; min-width:0; }
+.governanceRow strong { color:#24364b; }
+.governanceRow small { color:#78838e; line-height:1.45; }
+.governanceStatus {
+  display:inline-flex; align-items:center; min-height:25px; padding:0 8px;
+  border-radius:999px; background:#eef1f4; color:#637180;
+  font-size:8px; font-weight:900; letter-spacing:.07em; text-transform:uppercase;
+}
+.governanceStatus-approved,.governanceStatus-active,.governanceStatus-claimed { background:#edf8f1; color:#38704c; }
+.governanceStatus-pending { background:#fff7df; color:#896b25; }
+.governanceStatus-suspended { background:#fff2df; color:#955f22; }
+.governanceStatus-revoked,.governanceStatus-expired { background:#fff0ef; color:#9b403b; }
+.governanceActions { display:flex; align-items:center; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
+.governanceActions form { margin:0; }
+.governanceActions button {
+  min-height:36px; padding:0 10px; border:0; border-radius:9px;
+  background:#0b2447; color:white; font-size:10px; font-weight:850; cursor:pointer;
+}
+.governanceActions .secondaryButton { background:#eef2f5!important; color:#24364b!important; }
+.governanceTeamPanel { margin-top:14px; }
+.governanceTeamTable { display:grid; }
+.governanceTeamRow {
+  min-height:84px; display:grid;
+  grid-template-columns:minmax(220px,1.3fr) minmax(180px,1fr) auto minmax(180px,auto);
+  align-items:center; gap:16px; border-top:1px solid var(--line); padding:12px 0;
+}
+.governanceTeamRow > div:not(.governanceActions) { display:flex; flex-direction:column; gap:4px; }
+.governanceTeamRow strong { color:#24364b; }
+.governanceTeamRow small { color:#7b8792; }
+.governanceSelf {
+  justify-self:end; color:#8a6c2c; font-size:9px; font-weight:900; letter-spacing:.1em;
+}
+@media (max-width:900px) {
+  .governanceHero,.governanceGrid { grid-template-columns:1fr; }
+  .governanceTeamRow { grid-template-columns:1fr auto; }
+  .governanceTeamRow > div:nth-child(2) { grid-column:1; }
+  .governanceActions { grid-column:1 / -1; justify-content:flex-start; }
+}
+@media (max-width:620px) {
+  .governanceRow { grid-template-columns:1fr auto; }
+  .governanceActions { grid-column:1 / -1; justify-content:flex-start; }
+  .governanceTeamRow { grid-template-columns:1fr; }
+  .governanceSelf { justify-self:start; }
+}
