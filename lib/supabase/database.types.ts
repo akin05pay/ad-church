@@ -816,6 +816,86 @@ export type Database = {
           },
         ]
       }
+      role_invitations: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          claimed_at: string | null
+          claimed_by: string | null
+          created_at: string
+          created_by: string
+          email: string
+          expires_at: string
+          id: string
+          organization_id: string
+          role_id: string
+          scope_ministry_id: string | null
+          scope_unit_id: string | null
+          status: string
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          claimed_at?: string | null
+          claimed_by?: string | null
+          created_at?: string
+          created_by: string
+          email: string
+          expires_at?: string
+          id?: string
+          organization_id: string
+          role_id: string
+          scope_ministry_id?: string | null
+          scope_unit_id?: string | null
+          status?: string
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          claimed_at?: string | null
+          claimed_by?: string | null
+          created_at?: string
+          created_by?: string
+          email?: string
+          expires_at?: string
+          id?: string
+          organization_id?: string
+          role_id?: string
+          scope_ministry_id?: string | null
+          scope_unit_id?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "role_invitations_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "role_invitations_role_id_fkey"
+            columns: ["role_id"]
+            isOneToOne: false
+            referencedRelation: "roles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "role_invitations_scope_ministry_id_fkey"
+            columns: ["scope_ministry_id"]
+            isOneToOne: false
+            referencedRelation: "ministries"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "role_invitations_scope_unit_id_fkey"
+            columns: ["scope_unit_id"]
+            isOneToOne: false
+            referencedRelation: "units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       role_permissions: {
         Row: {
           permission_id: string
@@ -848,18 +928,21 @@ export type Database = {
       }
       roles: {
         Row: {
+          authority_rank: number
           id: string
           key: string
           level: string
           name: string
         }
         Insert: {
+          authority_rank?: number
           id?: string
           key: string
           level: string
           name: string
         }
         Update: {
+          authority_rank?: number
           id?: string
           key?: string
           level?: string
@@ -1146,13 +1229,50 @@ export type Database = {
         Returns: Json
       }
       claim_initial_admin: { Args: never; Returns: Json }
+      claim_role_invitations: { Args: never; Returns: Json }
+      create_role_invitation: {
+        Args: {
+          target_email: string
+          target_ministry_id?: string
+          target_organization_id: string
+          target_role_id: string
+          target_unit_id?: string
+        }
+        Returns: string
+      }
       decide_access_request_step: {
         Args: { decision: string; target_request_id: string }
         Returns: string
       }
+      decide_role_invitation: {
+        Args: { decision: string; target_invitation_id: string }
+        Returns: string
+      }
+      list_manageable_team: {
+        Args: { target_organization_id: string }
+        Returns: {
+          assignment_id: string
+          authority_rank: number
+          email: string
+          granted_at: string
+          ministry_name: string
+          role_id: string
+          role_key: string
+          role_name: string
+          scope_ministry_id: string
+          scope_unit_id: string
+          status: string
+          unit_name: string
+          user_id: string
+        }[]
+      }
       reconcile_member_import_batch: {
         Args: { target_batch_id: string }
         Returns: Json
+      }
+      set_role_assignment_status: {
+        Args: { new_status: string; target_assignment_id: string }
+        Returns: string
       }
     }
     Enums: {
