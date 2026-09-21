@@ -41,34 +41,44 @@ When the official congregation/member files arrive, new column names can be mapp
 - Harpa Cristã registry activated as licensed content supplied by the contracting church.
 - PWA/offline foundation.
 
-## Worship 0.4 — next
+## Worship 0.4 — completed
 - Authorized worship operator console.
-- Public session slug/QR.
+- Public session slug/link.
 - Scripture/hymn selection.
 - Realtime publishing.
-- Offline behavior for licensed content.
+- Public mobile follow mode.
 
-## Congregational 0.5
+## Online bridge 0.5 — in progress
+- Public /online hub.
+- Official Assembleia de Deus Online / YouTube entry points.
+- Zoom / Google Meet / YouTube provider model.
+- Scoped online_meetings table.
+- Public/authenticated/unit-member visibility.
+- online.manage permission with RLS.
+- Next: admin publishing console, ministry/group audiences and reminders.
+
+## Congregational 0.6 — next
+- Load 43 official congregations.
+- Reconcile member registry.
+- My Church.
+- Groups and ministry memberships.
 - Events.
 - EBD/disciple journey.
 - Notices.
-- Ministry membership and schedules.
+- Ministry schedules.
 
 ## Canonical infrastructure — 2026-09-21
 
 Supabase:
-- Organization: dedicated AD Church Supabase organization
-- Project ref: `srrmxusgsgcmiqrbmhfl`
-- Region: `us-east-2`
-- Plan: Free
-- PostgreSQL: 17
-- Migrations: foundation through RLS helper hardening
-- Public tables: RLS enabled
+- Dedicated AD Church project.
+- Project ref: srrmxusgsgcmiqrbmhfl
+- PostgreSQL 17.
+- RLS on exposed product tables.
+- No Agrinvest/Greenvest reuse.
 
 Vercel:
-- Dedicated Vercel account/project: `ad-church`
-- Git integration: `akin05pay/ad-church`
-- Preview branch: `codex/foundation-0.2`
+- Dedicated project: ad-church.
+- Git integration: akin05pay/ad-church.
+- Production branch: main.
 
-Isolation:
-- No Agrinvest/Greenvest credentials, database, Auth, Storage, Functions, migrations, or project refs may be reused.
+See docs/ROADMAP.md for the product sequence and docs/MOCKUP_REUSE.md for the assembleia.church reuse policy.
