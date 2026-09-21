@@ -1,324 +1,223 @@
 import Link from "next/link";
 import { PublicNav } from "@/components/public-nav";
+import { HeroWorshipVideo } from "@/components/hero-worship-video";
+import "./home-editorial.css";
 
-const quickActions = [
+const access = [
   {
     href: "/culto",
-    kicker: "AGORA",
-    title: "Acompanhar o culto",
-    copy: "Veja a leitura bíblica e o hino atual em tempo real, sem login.",
-    icon: "◉",
-    accent: "live",
+    index: "01",
+    label: "Culto",
+    title: "Acompanhe o que está acontecendo agora.",
+    copy: "Leitura bíblica, Harpa e avisos enviados pela liderança em tempo real.",
   },
   {
     href: "/biblia",
-    kicker: "PALAVRA",
-    title: "Abrir a Bíblia",
-    copy: "66 livros, busca por referência, leitura confortável e acesso público.",
-    icon: "✦",
-    accent: "bible",
+    index: "02",
+    label: "Palavra",
+    title: "A Bíblia sempre aberta.",
+    copy: "Busca rápida por livro, capítulo e versículo — sem login.",
   },
   {
     href: "/hinarios",
-    kicker: "LOUVOR",
-    title: "Harpa Cristã",
-    copy: "524 hinos catalogados para busca por número, título e uso no culto.",
-    icon: "♪",
-    accent: "hymnal",
+    index: "03",
+    label: "Louvor",
+    title: "A Harpa no celular.",
+    copy: "Encontre o hino pelo número ou título e acompanhe a congregação.",
+  },
+  {
+    href: "/online",
+    index: "04",
+    label: "Online",
+    title: "Cultos, salas e encontros de onde você estiver.",
+    copy: "YouTube, Zoom, Google Meet e outros encontros digitais no mesmo fluxo.",
   },
   {
     href: "/login",
-    kicker: "COMUNIDADE",
-    title: "Minha Igreja",
-    copy: "Agenda, ministérios, EBD, avisos e vínculos da sua congregação.",
-    icon: "⌂",
-    accent: "church",
-  },
-];
-
-const journey = [
-  {
-    number: "01",
-    title: "Durante o culto",
-    copy: "Bíblia, Harpa e referências do culto chegam à tela do celular em poucos toques.",
-  },
-  {
-    number: "02",
-    title: "Durante a semana",
-    copy: "Agenda, avisos, EBD, ministérios e próximos passos continuam organizados no mesmo lugar.",
-  },
-  {
-    number: "03",
-    title: "Para cada pessoa",
-    copy: "A experiência muda conforme congregação, vínculo, ministério e papel aprovado.",
+    index: "05",
+    label: "Comunidade",
+    title: "A sua igreja, quando você entra.",
+    copy: "Agenda, EBD, ministérios, avisos e vínculos da sua congregação.",
   },
 ];
 
 export default function HomePage() {
   return (
-    <main className="homePage">
+    <main className="editorialHome">
       <PublicNav />
 
-      <section className="homeHeroShell">
-        <div className="homeHeroGlow homeHeroGlowOne" aria-hidden="true" />
-        <div className="homeHeroGlow homeHeroGlowTwo" aria-hidden="true" />
+      <section className="editorialHero">
+        <HeroWorshipVideo />
 
-        <div className="homeHero">
-          <div className="homeHeroCopy">
-            <div className="homeHeroBadge">
-              <span className="homeStatusDot" />
-              AD Church · uma experiência digital para a igreja
-            </div>
+        <div className="editorialHeroShade" aria-hidden="true" />
 
+        <div className="editorialHeroInner shell">
+          <div className="editorialHeroTopline">
+            <span>ASSEMBLEIA DE DEUS ONLINE · AD CHURCH</span>
+            <span>SETOR 04 · SANTANA</span>
+          </div>
+
+          <div className="editorialHeroContent">
+            <p className="editorialHeroEyebrow">IGREJA · PALAVRA · COMUNIDADE</p>
             <h1>
               A fé acompanha você.
               <span>Antes, durante e depois do culto.</span>
             </h1>
-
-            <p>
-              Bíblia, Harpa Cristã e acompanhamento do culto sem login.
-              Vida congregacional, ministérios e cuidado pastoral com acesso seguro,
-              contextual e aprovado pela igreja.
+            <p className="editorialHeroText">
+              Um braço de vida congregacional conectado à Assembleia de Deus Online:
+              Bíblia, Harpa, culto, grupos, encontros digitais e a igreja local no mesmo caminho.
             </p>
 
-            <div className="homeHeroActions">
-              <Link className="homeButton homeButtonPrimary" href="/culto">
-                <span>Acompanhar culto</span>
-                <span aria-hidden="true">→</span>
+            <div className="editorialHeroActions">
+              <Link href="/culto" className="editorialPrimaryAction">
+                Acompanhar o culto <span>→</span>
               </Link>
-              <Link className="homeButton homeButtonGhost" href="/biblia">
-                Abrir a Bíblia
+              <Link href="/online" className="editorialSecondaryAction">
+                Entrar no Online
               </Link>
-            </div>
-
-            <div className="homeHeroTrust" aria-label="Características principais">
-              <span><b>Sem login</b> para Bíblia e Harpa</span>
-              <span><b>Realtime</b> no Modo Culto</span>
-              <span><b>PWA</b> instalável no celular</span>
             </div>
           </div>
 
-          <div className="homeDeviceStage" aria-label="Prévia da experiência no celular">
-            <div className="homeOrbit homeOrbitOne" aria-hidden="true" />
-            <div className="homeOrbit homeOrbitTwo" aria-hidden="true" />
-
-            <div className="homePhone">
-              <div className="homePhoneTop">
-                <span>AD Church</span>
-                <span className="homePhoneSignal">● ● ●</span>
-              </div>
-
-              <div className="homePhoneBody">
-                <div className="homeLiveHeader">
-                  <span className="homeLiveBadge"><i /> AO VIVO</span>
-                  <span>Dom · 19:00</span>
-                </div>
-
-                <div className="homeServiceTitle">
-                  <small>CULTO DE CELEBRAÇÃO</small>
-                  <strong>Setor 04 · Santana</strong>
-                  <span>Acompanhe pelo seu celular</span>
-                </div>
-
-                <div className="homePhoneCard homePhoneBible">
-                  <div>
-                    <span className="homePhoneLabel">LEITURA ATUAL</span>
-                    <strong>João 3:16</strong>
-                  </div>
-                  <span className="homePhoneArrow">→</span>
-                </div>
-
-                <div className="homePhoneCard homePhoneHymn">
-                  <div>
-                    <span className="homePhoneLabel">HARPA CRISTÃ</span>
-                    <strong>291 · A Mensagem da Cruz</strong>
-                  </div>
-                  <span className="homePhoneArrow">♪</span>
-                </div>
-
-                <div className="homePhoneUpdate">
-                  <span className="homePulse" />
-                  Atualizado em tempo real
-                </div>
-
-                <div className="homeMiniNav">
-                  <span className="active">Hoje</span>
-                  <span>Bíblia</span>
-                  <span>Harpa</span>
-                  <span>Igreja</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="homeFloatingCard homeFloatingBible">
-              <span>PALAVRA</span>
-              <strong>66 livros</strong>
-              <small>1.189 capítulos</small>
-            </div>
-
-            <div className="homeFloatingCard homeFloatingHarpa">
-              <span>HARPA CRISTÃ</span>
-              <strong>524 hinos</strong>
-              <small>catálogo oficial</small>
-            </div>
+          <div className="editorialHeroFooter">
+            <span>Ministério do Belém</span>
+            <span>São Paulo</span>
+            <span>Presencial + digital + vida congregacional</span>
           </div>
         </div>
       </section>
 
-      <section className="homeQuick shell" aria-labelledby="home-quick-title">
-        <div className="homeSectionIntro">
-          <div>
-            <span className="homeSectionEyebrow">COMECE POR AQUI</span>
-            <h2 id="home-quick-title">Tudo o que você precisa, no momento certo.</h2>
-          </div>
+      <section className="editorialIntro shell">
+        <div className="editorialIntroLabel">AD Church</div>
+        <div className="editorialIntroBody">
+          <h2>Uma igreja sem muros também precisa de uma vida congregacional conectada.</h2>
           <p>
-            A área pública prioriza o que realmente é usado no templo.
-            O restante aparece quando a pessoa entra e tem seu vínculo aprovado.
+            O assembleia.online amplia o alcance, as transmissões e a comunidade online.
+            O AD Church continua essa experiência no dia a dia da congregação: culto acompanhado,
+            Bíblia, Harpa, EBD, ministérios, grupos, agenda e cuidado pastoral.
+          </p>
+        </div>
+      </section>
+
+      <section className="editorialEcosystem shell">
+        <div className="editorialEcosystemLead">
+          <span>UM ECOSSISTEMA</span>
+          <h2>Do alcance digital à vida da igreja local.</h2>
+          <p>
+            Os dois ambientes se complementam sem duplicar função: um alcança, transmite e conecta;
+            o outro organiza o relacionamento contínuo de pessoas, congregações e ministérios.
           </p>
         </div>
 
-        <div className="homeQuickGrid">
-          {quickActions.map((item) => (
-            <Link
-              className={`homeQuickCard homeQuickCard-${item.accent}`}
-              href={item.href}
-              key={item.href}
-            >
-              <div className="homeQuickCardTop">
-                <span className="homeQuickIcon" aria-hidden="true">{item.icon}</span>
-                <span className="homeQuickArrow" aria-hidden="true">↗</span>
-              </div>
-              <span className="homeQuickKicker">{item.kicker}</span>
-              <h3>{item.title}</h3>
-              <p>{item.copy}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="homeContinuum shell">
-        <div className="homeContinuumPanel">
-          <div className="homeContinuumHeader">
-            <span className="homeSectionEyebrow homeSectionEyebrowLight">UMA EXPERIÊNCIA CONTÍNUA</span>
-            <h2>O culto não termina quando a reunião acaba.</h2>
-            <p>
-              O AD Church conecta o momento público de adoração com a vida real da congregação:
-              relacionamento, formação, serviço e cuidado.
-            </p>
-          </div>
-
-          <div className="homeJourneyGrid">
-            {journey.map((item) => (
-              <article className="homeJourneyCard" key={item.number}>
-                <span>{item.number}</span>
-                <h3>{item.title}</h3>
-                <p>{item.copy}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="homeContext shell">
-        <div className="homeContextCopy">
-          <span className="homeSectionEyebrow">UMA HOME QUE CONHECE O CONTEXTO</span>
-          <h2>Quando a pessoa entra, o aplicativo passa a mostrar a igreja dela.</h2>
-          <p>
-            Congregação, agenda local, ministérios, EBD, avisos e jornadas aparecem conforme
-            o vínculo e as permissões aprovadas. O usuário não precisa navegar por uma estrutura
-            gigantesca para encontrar o que importa.
-          </p>
-
-          <div className="homeContextChecks">
-            <span><i>✓</i> Congregação primeiro</span>
-            <span><i>✓</i> Conteúdo por vínculo</span>
-            <span><i>✓</i> Permissões por escopo</span>
-            <span><i>✓</i> Experiência simples para membros</span>
-          </div>
-
-          <Link className="homeTextLink" href="/login">
-            Entrar em Minha Igreja <span>→</span>
+        <div className="editorialEcosystemRows">
+          <a href="https://www.assembleia.online/" target="_blank" rel="noreferrer">
+            <span>ASSEMBLEIA.ONLINE</span>
+            <strong>Ao vivo · Sermões · Telepaz · Membro Online</strong>
+            <i>↗</i>
+          </a>
+          <Link href="/online">
+            <span>AD CHURCH ONLINE</span>
+            <strong>YouTube · Zoom · Google Meet · Grupos</strong>
+            <i>→</i>
+          </Link>
+          <Link href="/login">
+            <span>AD CHURCH LOCAL</span>
+            <strong>Congregação · EBD · Ministérios · Agenda · Cuidado</strong>
+            <i>→</i>
           </Link>
         </div>
-
-        <div className="homeFeedMock">
-          <div className="homeFeedHeader">
-            <div>
-              <span>DOMINGO</span>
-              <strong>Olá. Que bom ter você aqui.</strong>
-            </div>
-            <div className="homeAvatar">AD</div>
-          </div>
-
-          <div className="homeTodayCard">
-            <span>HOJE NA SUA IGREJA</span>
-            <strong>Culto de Celebração</strong>
-            <p>19:00 · Congregação</p>
-            <button type="button">Ver detalhes</button>
-          </div>
-
-          <div className="homeFeedRows">
-            <div>
-              <span className="homeFeedIcon">✦</span>
-              <p><small>LEITURA</small><strong>Continue sua leitura bíblica</strong></p>
-              <span>→</span>
-            </div>
-            <div>
-              <span className="homeFeedIcon">◎</span>
-              <p><small>MINHA JORNADA</small><strong>Próximo encontro de EBD</strong></p>
-              <span>→</span>
-            </div>
-            <div>
-              <span className="homeFeedIcon">♪</span>
-              <p><small>MEU MINISTÉRIO</small><strong>Ensaio e escala da semana</strong></p>
-              <span>→</span>
-            </div>
-          </div>
-        </div>
       </section>
 
-      <section className="homeNumbers shell" aria-label="Estrutura da experiência pública">
-        <div>
-          <strong>66</strong>
-          <span>livros bíblicos</span>
-        </div>
-        <div>
-          <strong>1.189</strong>
-          <span>capítulos no cânon protestante</span>
-        </div>
-        <div>
-          <strong>524</strong>
-          <span>hinos na Harpa Cristã</span>
-        </div>
-        <div>
-          <strong>1</strong>
-          <span>experiência para culto e comunidade</span>
-        </div>
+      <section className="editorialAccess shell" aria-label="Acessos principais">
+        {access.map((item) => (
+          <Link href={item.href} className="editorialAccessRow" key={item.href}>
+            <span className="editorialAccessIndex">{item.index}</span>
+            <span className="editorialAccessLabel">{item.label}</span>
+            <span className="editorialAccessMain">
+              <strong>{item.title}</strong>
+              <small>{item.copy}</small>
+            </span>
+            <span className="editorialAccessArrow" aria-hidden="true">↗</span>
+          </Link>
+        ))}
       </section>
 
-      <section className="homeFinal shell">
-        <div className="homeFinalPanel">
-          <div>
-            <span className="homeSectionEyebrow homeSectionEyebrowLight">AD CHURCH</span>
-            <h2>A igreja cabe no celular.<br />A comunhão não cabe só na tela.</h2>
+      <section className="editorialWorshipBand">
+        <div className="shell editorialWorshipBandInner">
+          <div className="editorialWorshipBandCopy">
+            <span>NO CULTO</span>
+            <h2>Menos procura. Mais atenção ao que está acontecendo.</h2>
             <p>
-              Tecnologia para tornar Bíblia, louvor, informação e vida congregacional
-              mais acessíveis — sem substituir o encontro, o cuidado e a comunidade.
+              A referência bíblica e o hino atual chegam à tela em tempo real.
+              O membro acompanha sem cadastro, senha ou menus desnecessários.
             </p>
+            <Link href="/culto">Abrir Modo Culto →</Link>
           </div>
-          <div className="homeFinalActions">
-            <Link className="homeButton homeButtonLight" href="/culto">Acompanhar o culto</Link>
-            <Link className="homeButton homeButtonOutlineLight" href="/login">Entrar</Link>
+
+          <div className="editorialWorshipFacts">
+            <div>
+              <strong>66</strong>
+              <span>livros bíblicos</span>
+            </div>
+            <div>
+              <strong>524</strong>
+              <span>hinos catalogados</span>
+            </div>
+            <div>
+              <strong>0</strong>
+              <span>login para acompanhar</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <footer className="homeFooter shell">
+      <section className="editorialSplit shell">
+        <article>
+          <span>PARA QUEM FREQUENTA</span>
+          <h2>A igreja local vem primeiro.</h2>
+          <p>
+            Ao entrar, a pessoa encontra sua congregação, os próximos cultos, avisos,
+            EBD, ministérios, grupos e jornadas que realmente fazem parte da vida dela.
+          </p>
+          <Link href="/login">Entrar em Minha Igreja →</Link>
+        </article>
+
+        <article>
+          <span>PARA QUEM ESTÁ LONGE</span>
+          <h2>A comunhão também pode começar por uma sala online.</h2>
+          <p>
+            Encontros com o pastor, grupos e reuniões podem apontar para Zoom, Google Meet,
+            YouTube ou outro serviço, com acesso organizado conforme o público de cada encontro.
+          </p>
+          <Link href="/online">Ver encontros online →</Link>
+        </article>
+      </section>
+
+      <section className="editorialStatement shell">
+        <p>
+          Tecnologia para ampliar o alcance da igreja —
+          <strong> sem substituir o encontro, a comunhão ou o cuidado.</strong>
+        </p>
+      </section>
+
+      <section className="editorialFinal">
+        <div className="shell editorialFinalInner">
+          <div>
+            <span>AD CHURCH · ASSEMBLEIA DE DEUS ONLINE</span>
+            <h2>Palavra, louvor, transmissão e comunidade no mesmo caminho.</h2>
+          </div>
+          <div className="editorialFinalActions">
+            <Link href="/online">Conectar agora</Link>
+            <Link href="/login">Minha Igreja</Link>
+          </div>
+        </div>
+      </section>
+
+      <footer className="editorialFooter shell">
         <Link className="brand" href="/">
           <span className="brandMark">AD</span>
           <span>Church</span>
         </Link>
-        <p>Bíblia · Harpa · Comunidade · Gestão congregacional</p>
+        <p>Assembleia de Deus · Ministério do Belém · Setor 04 Santana</p>
       </footer>
     </main>
   );
