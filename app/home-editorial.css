@@ -893,3 +893,120 @@
 @media (prefers-reduced-motion: reduce) {
   .editorialVideoControl { display:none; }
 }
+
+
+/* Online meetings — scoped live/scheduled list */
+.onlineUpcoming {
+  padding-top:88px;
+  padding-bottom:22px;
+}
+.onlineUpcomingIntro {
+  display:grid;
+  grid-template-columns:160px minmax(0,1fr);
+  gap:28px 48px;
+  align-items:start;
+  padding-bottom:34px;
+}
+.onlineUpcomingIntro > span {
+  color:#8a6c2c;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.14em;
+}
+.onlineUpcomingIntro h2 {
+  margin:0;
+  color:#10263f;
+  font-size:clamp(34px,4.2vw,58px);
+  line-height:1;
+  letter-spacing:-.05em;
+}
+.onlineUpcomingIntro p {
+  grid-column:2;
+  max-width:620px;
+  margin:0;
+  color:#6d7782;
+  line-height:1.65;
+}
+.onlineMeetingList {
+  border-top:1px solid #c8c2b7;
+}
+.onlineMeetingRow {
+  min-height:118px;
+  display:grid;
+  grid-template-columns:120px minmax(0,1fr) 190px 28px;
+  gap:22px;
+  align-items:center;
+  border-bottom:1px solid #c8c2b7;
+}
+.onlineMeetingPlatform {
+  color:#8a6c2c;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.onlineMeetingRow > div {
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+.onlineMeetingRow > div > strong {
+  color:#1b2f45;
+  font-size:19px;
+  font-weight:650;
+}
+.onlineMeetingRow > div > small {
+  color:#75808a;
+  font-size:12px;
+  line-height:1.5;
+}
+.onlineMeetingWhen {
+  text-align:right;
+}
+.onlineMeetingWhen strong {
+  color:#20354d!important;
+  font-size:12px!important;
+}
+.onlineMeetingWhen small {
+  color:#8a6c2c!important;
+  font-size:9px!important;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.onlineMeetingRow > i {
+  color:#87919b;
+  font-size:19px;
+  font-style:normal;
+}
+.onlineMeetingRow:hover > i {
+  color:#0b2447;
+}
+@media (max-width:700px) {
+  .onlineUpcoming {
+    padding-top:65px;
+  }
+  .onlineUpcomingIntro {
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  .onlineUpcomingIntro p {
+    grid-column:1;
+  }
+  .onlineMeetingRow {
+    min-height:150px;
+    grid-template-columns:1fr 24px;
+    gap:8px 14px;
+    padding:20px 0;
+  }
+  .onlineMeetingPlatform,
+  .onlineMeetingRow > div,
+  .onlineMeetingWhen {
+    grid-column:1;
+    text-align:left;
+  }
+  .onlineMeetingRow > i {
+    grid-column:2;
+    grid-row:1 / span 3;
+    align-self:center;
+  }
+}
