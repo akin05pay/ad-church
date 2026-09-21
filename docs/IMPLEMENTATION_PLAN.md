@@ -54,6 +54,7 @@ When the official congregation/member files arrive, new column names can be mapp
 - Zoom / Google Meet / YouTube provider model.
 - Scoped online_meetings table.
 - Public/authenticated/unit-member visibility.
+- Authenticated meetings restricted to the user's organization context.
 - online.manage permission with RLS.
 - Next: admin publishing console, ministry/group audiences and reminders.
 
@@ -64,7 +65,7 @@ When the official congregation/member files arrive, new column names can be mapp
 - /admin/equipe.
 - Audit logging for role grants, suspensions and revocations.
 
-## People administration 0.7 — in progress
+## People administration 0.7 — completed foundation
 - /admin/pessoas.
 - Scoped searchable people registry.
 - Manual person creation without forcing an auth account.
@@ -73,12 +74,23 @@ When the official congregation/member files arrive, new column names can be mapp
 - Audit logging for person and membership mutations.
 - Internal RPC entrypoints remain in the private schema and are callable only through authenticated public wrappers.
 
-## Congregational 0.8 — next
+## Member experience 0.8 — completed foundation
+- Personalized /app after approved person link.
+- Mobile-first authenticated navigation shell.
+- Congregation and parent sector context.
+- Member profile at /app/perfil.
+- Quick access to Bible, Harpa, Worship and Online.
+- Upcoming authorized online meetings.
+- Role/ministry context without conflating church membership with system authorization.
+- Unlinked-account onboarding and link-request progress.
+- Production canonical metadata points to https://assembleia.church.
+
+## Congregational 0.9 — next
 - Load 43 official congregations.
 - Reconcile member registry.
-- My Church.
-- Groups and ministry memberships.
-- Events.
+- Member-to-ministry associations.
+- Groups and group memberships.
+- Events and agenda.
 - EBD/disciple journey.
 - Notices.
 - Ministry schedules.
@@ -96,5 +108,6 @@ Vercel:
 - Dedicated project: ad-church.
 - Git integration: akin05pay/ad-church.
 - Production branch: main.
+- Canonical product domain: assembleia.church.
 
 See docs/ROADMAP.md for the product sequence and docs/MOCKUP_REUSE.md for the assembleia.church reuse policy.
