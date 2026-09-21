@@ -23,7 +23,7 @@ Canonical API URL:
 Region:
 `us-east-2`
 
-The browser must use only a publishable Supabase key from this project.
+The browser uses only the publishable key from this project. The canonical public URL/key are encoded as safe client defaults; environment variables may override them for controlled development.
 
 ### Vercel
 Project:
@@ -36,7 +36,7 @@ Environment variables required:
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
 
-Do not commit actual environment values.
+Never commit secret/service-role values. The project URL and publishable key are public client configuration and have canonical fallbacks in `lib/supabase/config.ts`.
 
 ## Isolation invariant
 
