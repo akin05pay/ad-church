@@ -3,7 +3,20 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
-function bootstrapClaimed(value: unknown) {
+function claimedCount(value: unknown) {
+  if (
+    typeof value === "object" &&
+    value !== null &&
+    !Array.isArray(value) &&
+    "claimed" in value &&
+    typeof (value as { claimed?: unknown }).claimed === "number"
+  ) {
+    return (value as { claimed: number }).claimed;
+  }
+  return 0;
+}
+
+function bootstrapWasClaimed(value: unknown) {
   return (
     typeof value === "object" &&
     value !== null &&
@@ -13,12 +26,16 @@ function bootstrapClaimed(value: unknown) {
   );
 }
 
-async function tryClaimInitialAdmin(
-  supabase: Awaited<ReturnType<typeof createClient>>,
-) {
-  const { data, error } = await supabase.rpc("claim_initial_admin");
-  if (error) return false;
-  return bootstrapClaimed(data);
+async function claimAccess(supabase: Awaited<ReturnType<typeof createClient>>) {
+  const [bootstrap, invitations] = await Promise.all([
+    supabase.rpc("claim_initial_admin"),
+    supabase.rpc("claim_role_invitations"),
+  ]);
+
+  return (
+    (!bootstrap.error && bootstrapWasClaimed(bootstrap.data)) ||
+    (!invitations.error && claimedCount(invitations.data) > 0)
+  );
 }
 
 export async function login(formData: FormData) {
@@ -27,18 +44,18 @@ export async function login(formData: FormData) {
   const next = String(formData.get("next") ?? "/app");
 
   if (!email || !password) {
-    redirect(`/login?error=missing${next ? `&next=${encodeURIComponent(next)}` : ""}`);
+    redirect("/login?error=missing&next=" + encodeURIComponent(next));
   }
 
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error) {
-    redirect(`/login?error=invalid${next ? `&next=${encodeURIComponent(next)}` : ""}`);
+    redirect("/login?error=invalid&next=" + encodeURIComponent(next));
   }
 
-  const claimed = await tryClaimInitialAdmin(supabase);
-  if (claimed) redirect("/admin");
+  const accessClaimed = await claimAccess(supabase);
+  if (accessClaimed) redirect("/admin");
 
   redirect(next.startsWith("/") ? next : "/app");
 }
@@ -50,13 +67,19 @@ export async function signup(formData: FormData) {
   if (!email || password.length < 8) redirect("/login?error=signup");
 
   const supabase = await createClient();
-  const { data, error } = await supabase.auth.signUp({ email, password });
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      emailRedirectTo: "https://assembleia.church/auth/confirm?next=/app",
+    },
+  });
 
   if (error) redirect("/login?error=signup");
 
   if (data.session) {
-    const claimed = await tryClaimInitialAdmin(supabase);
-    if (claimed) redirect("/admin");
+    const accessClaimed = await claimAccess(supabase);
+    if (accessClaimed) redirect("/admin");
     redirect("/app");
   }
 
