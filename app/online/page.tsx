@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PublicNav } from "@/components/public-nav";
+import { createClient } from "@/lib/supabase/server";
 import "../home-editorial.css";
 
 export const metadata: Metadata = {
   title: "Online",
   description: "Cultos, encontros e conexões digitais da Assembleia de Deus Online e AD Church.",
 };
+
+export const dynamic = "force-dynamic";
 
 const connections = [
   {
@@ -28,7 +31,7 @@ const connections = [
   {
     kind: "GRUPOS",
     title: "Salas de Zoom e Google Meet",
-    copy: "Os links de pequenos grupos, ministérios, discipulado e reuniões poderão aparecer aqui conforme o vínculo e a permissão de cada pessoa.",
+    copy: "Os links de grupos, ministérios, discipulado e reuniões aparecem conforme o vínculo e a permissão de cada pessoa.",
     href: "/login",
     external: false,
     action: "Entrar no AD Church",
@@ -43,7 +46,36 @@ const connections = [
   },
 ];
 
-export default function OnlinePage() {
+const platformLabel: Record<string, string> = {
+  youtube: "YouTube",
+  zoom: "Zoom",
+  google_meet: "Google Meet",
+  other: "Online",
+};
+
+function formatMeetingDate(value: string) {
+  return new Intl.DateTimeFormat("pt-BR", {
+    timeZone: "America/Sao_Paulo",
+    weekday: "short",
+    day: "2-digit",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date(value));
+}
+
+export default async function OnlinePage() {
+  const supabase = await createClient();
+  const from = new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString();
+
+  const { data: meetings } = await supabase
+    .from("online_meetings")
+    .select("id,title,description,platform,join_url,starts_at,ends_at,status,visibility")
+    .gte("starts_at", from)
+    .in("status", ["scheduled", "live"])
+    .order("starts_at", { ascending: true })
+    .limit(12);
+
   return (
     <main className="editorialHome onlineHub">
       <PublicNav />
@@ -53,8 +85,8 @@ export default function OnlinePage() {
           <p>ASSEMBLEIA DE DEUS ONLINE · AD CHURCH</p>
           <h1>Conecte-se de onde estiver.</h1>
           <span>
-            Cultos, mensagens, encontros com o pastor e, progressivamente,
-            salas de grupos e ministérios em um único ponto de entrada.
+            Cultos, mensagens, encontros com o pastor e salas de grupos e ministérios
+            em um único ponto de entrada.
           </span>
         </div>
       </section>
@@ -76,6 +108,44 @@ export default function OnlinePage() {
           <small>Santa Ceia</small>
         </div>
       </section>
+
+      {(meetings?.length ?? 0) > 0 && (
+        <section className="shell onlineUpcoming">
+          <div className="onlineUpcomingIntro">
+            <span>PRÓXIMOS ENCONTROS</span>
+            <h2>Entre no encontro certo.</h2>
+            <p>
+              Esta lista já respeita a visibilidade definida pela liderança. Reuniões privadas
+              não são expostas para quem não possui o vínculo necessário.
+            </p>
+          </div>
+
+          <div className="onlineMeetingList">
+            {meetings?.map((meeting) => (
+              <a
+                href={meeting.join_url}
+                target="_blank"
+                rel="noreferrer"
+                className="onlineMeetingRow"
+                key={meeting.id}
+              >
+                <span className="onlineMeetingPlatform">
+                  {platformLabel[meeting.platform] ?? "Online"}
+                </span>
+                <div>
+                  <strong>{meeting.title}</strong>
+                  <small>{meeting.description ?? "Encontro online"}</small>
+                </div>
+                <div className="onlineMeetingWhen">
+                  <strong>{meeting.status === "live" ? "AO VIVO" : formatMeetingDate(meeting.starts_at)}</strong>
+                  <small>{meeting.visibility === "public" ? "Público" : "Acesso autorizado"}</small>
+                </div>
+                <i>↗</i>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="shell onlineConnections">
         <div className="onlineConnectionsIntro">
@@ -117,8 +187,8 @@ export default function OnlinePage() {
       <section className="onlineGroups">
         <div className="shell onlineGroupsInner">
           <div>
-            <span>PRÓXIMA CAMADA</span>
-            <h2>Grupos online com link certo para a pessoa certa.</h2>
+            <span>CAMADA CONGREGACIONAL</span>
+            <h2>Links organizados por contexto, não espalhados em mensagens.</h2>
           </div>
           <div className="onlinePlatformList">
             <span>Zoom</span>
@@ -127,8 +197,9 @@ export default function OnlinePage() {
             <span>Outros links</span>
           </div>
           <p>
-            A estrutura está sendo preparada para que líderes publiquem encontros por setor,
-            congregação, ministério ou grupo. Links privados não precisam ficar expostos na área pública.
+            A estrutura já aceita encontros públicos, autenticados ou restritos aos membros
+            de uma unidade. O próximo passo é acrescentar grupos e ministérios como audiências
+            específicas e dar aos líderes um console simples de publicação.
           </p>
         </div>
       </section>
