@@ -1,0 +1,44 @@
+name: Vercel Preview
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - codex/foundation-0.2
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Require Vercel token
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "::error::VERCEL_TOKEN is not configured for this repository."
+            exit 1
+          fi
+
+      - name: Deploy isolated preview
+        id: deploy
+        run: |
+          PREVIEW_URL="$(npx vercel@latest deploy --yes --token="$VERCEL_TOKEN" --scope=agroderi)"
+          echo "url=$PREVIEW_URL" >> "$GITHUB_OUTPUT"
+          echo "### AD Church Vercel Preview" >> "$GITHUB_STEP_SUMMARY"
+          echo "$PREVIEW_URL" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Verify public home
+        run: |
+          curl --fail --silent --show-error --location "${{ steps.deploy.outputs.url }}" > /dev/null
+
+      - name: Verify Bible route
+        run: |
+          curl --fail --silent --show-error --location "${{ steps.deploy.outputs.url }}/biblia" > /dev/null
