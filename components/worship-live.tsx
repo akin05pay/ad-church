@@ -127,7 +127,7 @@ export function WorshipLive() {
             <span className="cardLabel">LEITURA DE EXEMPLO</span>
             <h2>João 3:16</h2>
             <p>Abra o leitor bíblico para navegar pelo capítulo e pelos versículos.</p>
-            <Link href="/biblia/joao/3?v=16">Abrir leitor bíblico →</Link>
+            <Link href="/biblia/john/3?v=16">Abrir leitor bíblico →</Link>
           </article>
 
           <article className="worshipCard">
