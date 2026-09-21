@@ -9,7 +9,7 @@ function value(formData: FormData, key: string) {
   return raw || null;
 }
 
-function go(kind: "ok" | "error", message: string, organizationId?: string | null) {
+function go(kind: "ok" | "error", message: string, organizationId?: string | null): never {
   const params = new URLSearchParams();
   params.set(kind, message);
   if (organizationId) params.set("org", organizationId);
