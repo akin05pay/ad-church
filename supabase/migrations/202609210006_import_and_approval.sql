@@ -245,20 +245,20 @@ returns void language plpgsql security definer set search_path = ''
 as $$
 declare
   req public.access_requests%rowtype;
-  person_id uuid;
+  resolved_person_id uuid;
 begin
   select * into req from public.access_requests where id = target_request_id for update;
   if not found then raise exception 'request_not_found'; end if;
 
-  person_id := req.matched_person_id;
+  resolved_person_id := req.matched_person_id;
 
-  if person_id is null then
-    select p.person_id into person_id
+  if resolved_person_id is null then
+    select p.person_id into resolved_person_id
     from public.profiles p
     where p.user_id = req.user_id;
   end if;
 
-  if person_id is null then
+  if resolved_person_id is null then
     insert into public.people(
       organization_id, full_name, email, phone, birth_date
     ) values (
@@ -268,10 +268,10 @@ begin
       nullif(trim(req.requested_phone), ''),
       req.requested_birth_date
     )
-    returning id into person_id;
+    returning id into resolved_person_id;
 
-    update public.profiles
-      set person_id = person_id
+    update public.profiles p
+      set person_id = resolved_person_id
     where user_id = req.user_id;
   end if;
 
@@ -280,7 +280,7 @@ begin
       person_id, unit_id, membership_type, status, approved_by, approved_at
     )
     values (
-      person_id, req.requested_unit_id, 'member', 'active', actor_user_id, now()
+      resolved_person_id, req.requested_unit_id, 'member', 'active', actor_user_id, now()
     )
     on conflict (person_id, unit_id)
     do update set
@@ -309,7 +309,7 @@ begin
 
   update public.access_requests
   set status = 'approved',
-      matched_person_id = person_id,
+      matched_person_id = resolved_person_id,
       match_status = case when matched_person_id is null then 'manual_review' else 'matched' end,
       decided_at = now(),
       decided_by = actor_user_id
@@ -320,7 +320,7 @@ begin
   )
   values (
     req.organization_id, actor_user_id, 'access.approved', 'access_request',
-    req.id::text, jsonb_build_object('user_id', req.user_id, 'person_id', person_id)
+    req.id::text, jsonb_build_object('user_id', req.user_id, 'person_id', resolved_person_id)
   );
 end;
 $$;
