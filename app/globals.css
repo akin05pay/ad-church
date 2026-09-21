@@ -1468,3 +1468,755 @@ button, input, select { font: inherit; }
   .personRow { grid-template-columns:1fr; }
   .personBadges { grid-column:1; grid-row:auto; justify-content:flex-start; flex-direction:row; }
 }
+
+
+/* Minha Igreja 0.8 */
+.memberAppFrame {
+  min-height:100vh;
+  background:#f4f1ea;
+  color:#172234;
+}
+.memberTopbar {
+  position:sticky;
+  top:0;
+  z-index:30;
+  min-height:72px;
+  display:flex;
+  align-items:center;
+  gap:28px;
+  padding:0 clamp(18px,4vw,54px);
+  border-bottom:1px solid rgba(18,38,62,.12);
+  background:rgba(244,241,234,.94);
+  backdrop-filter:blur(18px);
+}
+.memberBrand {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#10263f;
+}
+.memberBrand > span:last-child {
+  display:flex;
+  flex-direction:column;
+  line-height:1.05;
+}
+.memberBrand strong {
+  font-size:14px;
+}
+.memberBrand small {
+  margin-top:4px;
+  color:#8a6c2c;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.memberDesktopNav {
+  display:flex;
+  align-items:center;
+  gap:22px;
+  margin-left:auto;
+}
+.memberDesktopNav a {
+  color:#53606e;
+  font-size:12px;
+  font-weight:760;
+}
+.memberDesktopNav a:hover {
+  color:#0b2447;
+}
+.memberLogout {
+  margin:0;
+}
+.memberLogout button {
+  min-height:38px;
+  padding:0 12px;
+  border:1px solid #c8c4bb;
+  border-radius:10px;
+  background:transparent;
+  color:#4c5967;
+  font-size:11px;
+  font-weight:800;
+  cursor:pointer;
+}
+.memberBottomNav {
+  display:none;
+}
+.memberShell {
+  width:min(1180px,calc(100% - 32px));
+  margin:0 auto;
+  padding:54px 0 120px;
+}
+.memberKicker,
+.memberSectionHeading span,
+.memberChurchPrimary > span,
+.memberChurchFacts span,
+.memberIdentityCard > span,
+.memberProfileHero .memberKicker,
+.memberStatement > span {
+  color:#8a6c2c;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.memberOnboardingHero,
+.memberWelcome,
+.memberProfileHero {
+  min-height:420px;
+  display:flex;
+  justify-content:space-between;
+  gap:48px;
+  align-items:flex-end;
+  padding:56px;
+  border-radius:28px;
+  background:#0b2447;
+  color:white;
+  overflow:hidden;
+  position:relative;
+}
+.memberOnboardingHero:after,
+.memberWelcome:after,
+.memberProfileHero:after {
+  content:"";
+  position:absolute;
+  width:440px;
+  height:440px;
+  right:-180px;
+  top:-220px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:
+    0 0 0 48px rgba(255,255,255,.025),
+    0 0 0 96px rgba(255,255,255,.018);
+  pointer-events:none;
+}
+.memberOnboardingHero > *,
+.memberWelcome > *,
+.memberProfileHero > * {
+  position:relative;
+  z-index:1;
+}
+.memberOnboardingHero > div,
+.memberWelcome > div:first-child,
+.memberProfileHero > div {
+  max-width:790px;
+}
+.memberOnboardingHero h1,
+.memberWelcome h1,
+.memberProfileHero h1 {
+  margin:16px 0 0;
+  max-width:900px;
+  font-size:clamp(42px,6.6vw,82px);
+  line-height:.94;
+  letter-spacing:-.058em;
+  font-weight:690;
+  text-wrap:balance;
+}
+.memberWelcome h1 {
+  font-size:clamp(48px,7vw,88px);
+}
+.memberOnboardingHero p,
+.memberWelcome p,
+.memberProfileHero p {
+  max-width:680px;
+  margin:24px 0 0;
+  color:#bac7d2;
+  font-size:16px;
+  line-height:1.7;
+}
+.memberHeroActions {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-top:30px;
+}
+.memberPrimaryButton,
+.memberTextButton {
+  min-height:48px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 16px;
+  font-size:12px;
+  font-weight:850;
+}
+.memberPrimaryButton {
+  background:#f6f3ec;
+  color:#0b2447;
+  border-radius:10px;
+}
+.memberTextButton {
+  color:#e2c77c;
+}
+.memberIdentityCard {
+  flex:0 0 230px;
+  min-height:170px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:20px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:18px;
+  background:rgba(255,255,255,.07);
+  backdrop-filter:blur(12px);
+}
+.memberIdentityCard > span {
+  color:#e2c77c;
+}
+.memberIdentityCard strong {
+  margin-top:10px;
+  font-size:25px;
+  letter-spacing:-.035em;
+}
+.memberIdentityCard small {
+  margin-top:5px;
+  color:#b8c5cf;
+}
+.memberOnboardingSteps {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:0;
+  margin-top:58px;
+  border-top:1px solid #cfc9bd;
+  border-bottom:1px solid #cfc9bd;
+}
+.memberOnboardingSteps article {
+  min-height:220px;
+  padding:30px 32px 30px 0;
+}
+.memberOnboardingSteps article + article {
+  padding-left:32px;
+  border-left:1px solid #cfc9bd;
+}
+.memberOnboardingSteps span {
+  color:#a29274;
+  font-size:10px;
+}
+.memberOnboardingSteps strong {
+  display:block;
+  margin-top:30px;
+  color:#1b2f45;
+  font-size:23px;
+  letter-spacing:-.03em;
+}
+.memberOnboardingSteps p {
+  max-width:330px;
+  margin:10px 0 0;
+  color:#737d86;
+  font-size:13px;
+  line-height:1.6;
+}
+.memberQuickGrid {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin-top:14px;
+}
+.memberQuickGrid a {
+  min-height:142px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-content:space-between;
+  gap:10px;
+  padding:20px;
+  border:1px solid #d2ccc0;
+  border-radius:16px;
+  background:#faf8f3;
+}
+.memberQuickGrid span {
+  grid-column:1/-1;
+  color:#8a6c2c;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.12em;
+}
+.memberQuickGrid strong {
+  align-self:end;
+  color:#203247;
+  font-size:19px;
+  line-height:1.15;
+  letter-spacing:-.025em;
+}
+.memberQuickGrid i {
+  align-self:end;
+  color:#8c969f;
+  font-style:normal;
+  font-size:19px;
+}
+.memberChurchContext {
+  display:grid;
+  grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);
+  gap:0;
+  margin-top:72px;
+  border-top:1px solid #cfc9bd;
+  border-bottom:1px solid #cfc9bd;
+}
+.memberChurchPrimary {
+  min-height:360px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:48px 60px 48px 0;
+}
+.memberChurchPrimary h2 {
+  max-width:720px;
+  margin:16px 0 0;
+  color:#10263f;
+  font-size:clamp(42px,5.5vw,72px);
+  line-height:.98;
+  letter-spacing:-.055em;
+  font-weight:670;
+}
+.memberChurchPrimary p {
+  margin:20px 0 0;
+  color:#6f7983;
+  font-size:14px;
+}
+.memberChurchFacts {
+  border-left:1px solid #cfc9bd;
+}
+.memberChurchFacts > div {
+  min-height:120px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:8px;
+  padding:20px 0 20px 38px;
+  border-bottom:1px solid #cfc9bd;
+}
+.memberChurchFacts > div:last-child {
+  border-bottom:0;
+}
+.memberChurchFacts strong {
+  color:#22364d;
+  font-size:18px;
+}
+.memberSection {
+  margin-top:72px;
+}
+.memberPanel {
+  margin-top:0;
+  padding:26px;
+  border:1px solid #d2ccc0;
+  border-radius:18px;
+  background:#faf8f3;
+}
+.memberSectionHeading {
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:24px;
+}
+.memberSectionHeading > div {
+  min-width:0;
+}
+.memberSectionHeading h2 {
+  margin:8px 0 0;
+  color:#10263f;
+  font-size:clamp(30px,4vw,48px);
+  line-height:1;
+  letter-spacing:-.045em;
+  font-weight:660;
+}
+.memberSectionHeading > a {
+  color:#0b2447;
+  font-size:11px;
+  font-weight:850;
+}
+.memberMeetingList,
+.memberRequestList,
+.memberMembershipList,
+.memberRoleList {
+  border-top:1px solid #cfc9bd;
+}
+.memberMeetingList > a {
+  min-height:112px;
+  display:grid;
+  grid-template-columns:110px minmax(0,1fr) 190px 28px;
+  gap:20px;
+  align-items:center;
+  border-bottom:1px solid #cfc9bd;
+}
+.memberMeetingList > a > span {
+  color:#8a6c2c;
+  font-size:9px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+}
+.memberMeetingList > a > div {
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+.memberMeetingList strong {
+  color:#203247;
+  font-size:18px;
+}
+.memberMeetingList small {
+  color:#7c8791;
+  font-size:11px;
+}
+.memberMeetingList time {
+  color:#526171;
+  font-size:11px;
+  font-weight:750;
+  text-align:right;
+}
+.memberMeetingList i {
+  color:#8b959f;
+  font-style:normal;
+  font-size:18px;
+}
+.memberRequestList article,
+.memberMembershipList article {
+  min-height:84px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  border-bottom:1px solid #cfc9bd;
+}
+.memberRequestList article > div,
+.memberMembershipList article > div {
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+.memberRequestList strong,
+.memberMembershipList strong {
+  color:#23364c;
+}
+.memberRequestList small,
+.memberMembershipList small,
+.memberRequestList time {
+  color:#7a858f;
+  font-size:11px;
+}
+.memberMembershipList article > div:last-child {
+  text-align:right;
+}
+.memberMembershipList article > div:last-child span {
+  color:#8a6c2c;
+  font-size:11px;
+  font-weight:850;
+}
+.memberEmpty {
+  padding:30px 0;
+  border-top:1px solid #cfc9bd;
+}
+.memberEmpty.compact {
+  padding:22px 0 6px;
+}
+.memberEmpty strong {
+  color:#283a4f;
+}
+.memberEmpty p {
+  max-width:620px;
+  margin:7px 0 0;
+  color:#7a858f;
+  font-size:12px;
+  line-height:1.55;
+}
+.memberEmpty a {
+  display:inline-block;
+  margin-top:14px;
+  color:#0b2447;
+  font-weight:850;
+  font-size:11px;
+}
+.memberTwoColumn,
+.memberProfileGrid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:72px;
+}
+.memberRoleList > div {
+  min-height:72px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:4px;
+  border-bottom:1px solid #d7d2c8;
+}
+.memberRoleList strong {
+  color:#26394e;
+}
+.memberRoleList small {
+  color:#7b8791;
+  font-size:11px;
+}
+.memberInlineAction {
+  display:inline-block;
+  margin-top:20px;
+  color:#0b2447;
+  font-size:11px;
+  font-weight:850;
+}
+.memberMinistryCloud {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  padding-top:8px;
+}
+.memberMinistryCloud span {
+  min-height:38px;
+  display:inline-flex;
+  align-items:center;
+  padding:0 12px;
+  border:1px solid #d4cec2;
+  border-radius:999px;
+  color:#3c4d60;
+  background:white;
+  font-size:11px;
+  font-weight:730;
+}
+.memberStatement {
+  margin-top:100px;
+  padding:48px 0 10px;
+  border-top:1px solid #cfc9bd;
+}
+.memberStatement p {
+  max-width:980px;
+  margin:16px 0 0;
+  color:#8a847a;
+  font-size:clamp(30px,4.6vw,58px);
+  line-height:1.08;
+  letter-spacing:-.045em;
+}
+.memberStatement strong {
+  color:#17304a;
+  font-weight:680;
+}
+.memberProfileHero {
+  min-height:320px;
+  align-items:flex-end;
+}
+.memberProfileHero h1 {
+  font-size:clamp(40px,5.6vw,68px);
+}
+.memberDataList {
+  border-top:1px solid #d6d0c5;
+}
+.memberDataList > div {
+  min-height:67px;
+  display:grid;
+  grid-template-columns:150px minmax(0,1fr);
+  gap:18px;
+  align-items:center;
+  border-bottom:1px solid #d6d0c5;
+}
+.memberDataList span {
+  color:#7d8790;
+  font-size:10px;
+}
+.memberDataList strong {
+  color:#2a3d52;
+  font-size:12px;
+  overflow-wrap:anywhere;
+}
+
+@media (max-width:920px) {
+  .memberDesktopNav {
+    gap:14px;
+  }
+  .memberDesktopNav a {
+    font-size:11px;
+  }
+  .memberQuickGrid {
+    grid-template-columns:1fr 1fr;
+  }
+  .memberChurchContext {
+    grid-template-columns:1fr;
+  }
+  .memberChurchPrimary {
+    min-height:300px;
+    padding-right:0;
+  }
+  .memberChurchFacts {
+    border-left:0;
+    border-top:1px solid #cfc9bd;
+  }
+  .memberChurchFacts > div {
+    padding-left:0;
+  }
+  .memberTwoColumn,
+  .memberProfileGrid {
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width:720px) {
+  .memberTopbar {
+    min-height:62px;
+    padding:0 16px;
+  }
+  .memberDesktopNav,
+  .memberLogout {
+    display:none;
+  }
+  .memberBrand {
+    margin-right:auto;
+  }
+  .memberBottomNav {
+    position:fixed;
+    z-index:50;
+    left:10px;
+    right:10px;
+    bottom:10px;
+    min-height:62px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    align-items:center;
+    padding:5px;
+    border:1px solid rgba(16,38,63,.14);
+    border-radius:18px;
+    background:rgba(250,248,243,.96);
+    box-shadow:0 14px 44px rgba(8,26,44,.16);
+    backdrop-filter:blur(18px);
+  }
+  .memberBottomNav a {
+    min-height:50px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:3px;
+    border-radius:12px;
+    color:#65717c;
+  }
+  .memberBottomNav span {
+    font-size:16px;
+    line-height:1;
+  }
+  .memberBottomNav small {
+    font-size:8px;
+    font-weight:800;
+  }
+  .memberBottomLive {
+    color:#0b2447!important;
+    background:#ece6d9;
+  }
+  .memberBottomLive span {
+    color:#b54f45;
+    font-size:11px;
+  }
+  .memberShell {
+    width:min(100% - 24px,1180px);
+    padding-top:20px;
+    padding-bottom:110px;
+  }
+  .memberOnboardingHero,
+  .memberWelcome,
+  .memberProfileHero {
+    min-height:460px;
+    flex-direction:column;
+    justify-content:flex-end;
+    align-items:stretch;
+    gap:26px;
+    padding:30px 24px;
+    border-radius:22px;
+  }
+  .memberWelcome {
+    min-height:420px;
+  }
+  .memberOnboardingHero h1,
+  .memberWelcome h1,
+  .memberProfileHero h1 {
+    font-size:clamp(42px,13vw,62px);
+  }
+  .memberOnboardingHero p,
+  .memberWelcome p,
+  .memberProfileHero p {
+    font-size:14px;
+  }
+  .memberIdentityCard {
+    flex:auto;
+    min-height:130px;
+  }
+  .memberOnboardingSteps {
+    grid-template-columns:1fr;
+    margin-top:42px;
+  }
+  .memberOnboardingSteps article,
+  .memberOnboardingSteps article + article {
+    min-height:160px;
+    padding:24px 0;
+    border-left:0;
+    border-bottom:1px solid #cfc9bd;
+  }
+  .memberOnboardingSteps article:last-child {
+    border-bottom:0;
+  }
+  .memberOnboardingSteps strong {
+    margin-top:18px;
+  }
+  .memberQuickGrid {
+    grid-template-columns:1fr 1fr;
+  }
+  .memberQuickGrid a {
+    min-height:124px;
+    padding:16px;
+  }
+  .memberQuickGrid strong {
+    font-size:16px;
+  }
+  .memberChurchContext,
+  .memberSection,
+  .memberTwoColumn,
+  .memberProfileGrid {
+    margin-top:48px;
+  }
+  .memberChurchPrimary {
+    min-height:260px;
+    padding:34px 0;
+  }
+  .memberChurchPrimary h2 {
+    font-size:clamp(38px,11vw,52px);
+  }
+  .memberSectionHeading {
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .memberMeetingList > a {
+    min-height:136px;
+    grid-template-columns:1fr 22px;
+    gap:8px 12px;
+    padding:18px 0;
+  }
+  .memberMeetingList > a > span,
+  .memberMeetingList > a > div,
+  .memberMeetingList time {
+    grid-column:1;
+    text-align:left;
+  }
+  .memberMeetingList i {
+    grid-column:2;
+    grid-row:1 / span 3;
+    align-self:center;
+  }
+  .memberDataList > div {
+    grid-template-columns:1fr;
+    gap:5px;
+    padding:13px 0;
+  }
+  .memberStatement {
+    margin-top:70px;
+  }
+  .memberStatement p {
+    font-size:clamp(30px,9vw,44px);
+  }
+}
+
+@media (max-width:430px) {
+  .memberQuickGrid {
+    grid-template-columns:1fr;
+  }
+  .memberQuickGrid a {
+    min-height:105px;
+  }
+}
