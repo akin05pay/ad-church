@@ -1260,6 +1260,14 @@ export type Database = {
         Args: { decision: string; target_invitation_id: string }
         Returns: string
       }
+      list_manageable_congregations: {
+        Args: { target_organization_id: string }
+        Returns: {
+          id: string
+          name: string
+          parent_unit_id: string
+        }[]
+      }
       list_manageable_people: {
         Args: {
           result_limit?: number
