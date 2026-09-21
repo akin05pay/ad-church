@@ -25,8 +25,15 @@ const access = [
     copy: "Encontre o hino pelo número ou título e acompanhe a congregação.",
   },
   {
-    href: "/login",
+    href: "/online",
     index: "04",
+    label: "Online",
+    title: "Cultos, salas e encontros de onde você estiver.",
+    copy: "YouTube, Zoom, Google Meet e outros encontros digitais no mesmo fluxo.",
+  },
+  {
+    href: "/login",
+    index: "05",
     label: "Comunidade",
     title: "A sua igreja, quando você entra.",
     copy: "Agenda, EBD, ministérios, avisos e vínculos da sua congregação.",
@@ -55,8 +62,8 @@ export default function HomePage() {
 
         <div className="editorialHeroInner shell">
           <div className="editorialHeroTopline">
-            <span>AD CHURCH</span>
-            <span>MINISTÉRIO DO BELÉM</span>
+            <span>ASSEMBLEIA DE DEUS ONLINE · AD CHURCH</span>
+            <span>SETOR 04 · SANTANA</span>
           </div>
 
           <div className="editorialHeroContent">
@@ -66,24 +73,24 @@ export default function HomePage() {
               <span>Antes, durante e depois do culto.</span>
             </h1>
             <p className="editorialHeroText">
-              Bíblia, Harpa Cristã e acompanhamento do culto sem login.
-              A vida da congregação aparece quando você entra.
+              Um braço de vida congregacional conectado à Assembleia de Deus Online:
+              Bíblia, Harpa, culto, grupos, encontros digitais e a igreja local no mesmo caminho.
             </p>
 
             <div className="editorialHeroActions">
               <Link href="/culto" className="editorialPrimaryAction">
                 Acompanhar o culto <span>→</span>
               </Link>
-              <Link href="/biblia" className="editorialSecondaryAction">
-                Abrir a Bíblia
+              <Link href="/online" className="editorialSecondaryAction">
+                Entrar no Online
               </Link>
             </div>
           </div>
 
           <div className="editorialHeroFooter">
-            <span>Setor 04 · Santana</span>
+            <span>Ministério do Belém</span>
             <span>São Paulo</span>
-            <span>Experiência pública + área privada</span>
+            <span>Presencial + digital + vida congregacional</span>
           </div>
         </div>
       </section>
@@ -91,11 +98,41 @@ export default function HomePage() {
       <section className="editorialIntro shell">
         <div className="editorialIntroLabel">AD Church</div>
         <div className="editorialIntroBody">
-          <h2>Um único lugar para acompanhar o culto e viver a igreja durante a semana.</h2>
+          <h2>Uma igreja sem muros também precisa de uma vida congregacional conectada.</h2>
           <p>
-            A área pública começa pelo que realmente acontece no templo. A área autenticada
-            continua a experiência com congregação, EBD, ministérios, agenda e cuidado pastoral.
+            O assembleia.online amplia o alcance, as transmissões e a comunidade online.
+            O AD Church continua essa experiência no dia a dia da congregação: culto acompanhado,
+            Bíblia, Harpa, EBD, ministérios, grupos, agenda e cuidado pastoral.
           </p>
+        </div>
+      </section>
+
+      <section className="editorialEcosystem shell">
+        <div className="editorialEcosystemLead">
+          <span>UM ECOSSISTEMA</span>
+          <h2>Do alcance digital à vida da igreja local.</h2>
+          <p>
+            Os dois ambientes se complementam sem duplicar função: um alcança, transmite e conecta;
+            o outro organiza o relacionamento contínuo de pessoas, congregações e ministérios.
+          </p>
+        </div>
+
+        <div className="editorialEcosystemRows">
+          <a href="https://www.assembleia.online/" target="_blank" rel="noreferrer">
+            <span>ASSEMBLEIA.ONLINE</span>
+            <strong>Ao vivo · Sermões · Telepaz · Membro Online</strong>
+            <i>↗</i>
+          </a>
+          <Link href="/online">
+            <span>AD CHURCH ONLINE</span>
+            <strong>YouTube · Zoom · Google Meet · Grupos</strong>
+            <i>→</i>
+          </Link>
+          <Link href="/login">
+            <span>AD CHURCH LOCAL</span>
+            <strong>Congregação · EBD · Ministérios · Agenda · Cuidado</strong>
+            <i>→</i>
+          </Link>
         </div>
       </section>
 
@@ -148,25 +185,25 @@ export default function HomePage() {
           <h2>A igreja local vem primeiro.</h2>
           <p>
             Ao entrar, a pessoa encontra sua congregação, os próximos cultos, avisos,
-            EBD, ministérios e jornadas que realmente fazem parte da vida dela.
+            EBD, ministérios, grupos e jornadas que realmente fazem parte da vida dela.
           </p>
           <Link href="/login">Entrar em Minha Igreja →</Link>
         </article>
 
         <article>
-          <span>PARA QUEM CUIDA</span>
-          <h2>A liderança enxerga o contexto certo.</h2>
+          <span>PARA QUEM ESTÁ LONGE</span>
+          <h2>A comunhão também pode começar por uma sala online.</h2>
           <p>
-            Setor, congregação, ministério e grupo têm escopos próprios. Cada papel recebe
-            somente o acesso necessário para servir, acompanhar e administrar.
+            Encontros com o pastor, grupos e reuniões podem apontar para Zoom, Google Meet,
+            YouTube ou outro serviço, com acesso organizado conforme o público de cada encontro.
           </p>
-          <Link href="/login">Acessar área administrativa →</Link>
+          <Link href="/online">Ver encontros online →</Link>
         </article>
       </section>
 
       <section className="editorialStatement shell">
         <p>
-          Tecnologia para tornar a igreja mais acessível —
+          Tecnologia para ampliar o alcance da igreja —
           <strong> sem substituir o encontro, a comunhão ou o cuidado.</strong>
         </p>
       </section>
@@ -174,12 +211,12 @@ export default function HomePage() {
       <section className="editorialFinal">
         <div className="shell editorialFinalInner">
           <div>
-            <span>AD CHURCH</span>
-            <h2>Palavra, louvor e comunidade no mesmo caminho.</h2>
+            <span>AD CHURCH · ASSEMBLEIA DE DEUS ONLINE</span>
+            <h2>Palavra, louvor, transmissão e comunidade no mesmo caminho.</h2>
           </div>
           <div className="editorialFinalActions">
-            <Link href="/culto">Acompanhar culto</Link>
-            <Link href="/login">Entrar</Link>
+            <Link href="/online">Conectar agora</Link>
+            <Link href="/login">Minha Igreja</Link>
           </div>
         </div>
       </section>
@@ -189,7 +226,7 @@ export default function HomePage() {
           <span className="brandMark">AD</span>
           <span>Church</span>
         </Link>
-        <p>Assembleia de Deus · Ministério do Belém</p>
+        <p>Assembleia de Deus · Ministério do Belém · Setor 04 Santana</p>
       </footer>
     </main>
   );
