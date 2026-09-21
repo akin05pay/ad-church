@@ -14,6 +14,7 @@ export function PublicNav() {
       <nav className="nav" aria-label="Navegação principal">
         <Link href="/biblia">Bíblia</Link>
         <Link href="/hinarios">Harpa</Link>
+        <Link href="/online">Online</Link>
         <Link href="/culto" className="navLive">
           <span className="navLiveDot" aria-hidden="true" />
           Culto
