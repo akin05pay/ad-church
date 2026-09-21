@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PublicNav } from "@/components/public-nav";
+import { HeroWorshipVideo } from "@/components/hero-worship-video";
 import "./home-editorial.css";
 
 const access = [
@@ -46,17 +47,7 @@ export default function HomePage() {
       <PublicNav />
 
       <section className="editorialHero">
-        <video
-          className="editorialHeroVideo"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-hidden="true"
-        >
-          <source src="/media/hero-worship.mp4" type="video/mp4" />
-        </video>
+        <HeroWorshipVideo />
 
         <div className="editorialHeroShade" aria-hidden="true" />
 
