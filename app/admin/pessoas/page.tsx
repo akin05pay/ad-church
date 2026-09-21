@@ -76,13 +76,9 @@ export default async function PeopleAdminPage({ searchParams }: Props) {
       .select("id,name,slug")
       .in("id", availableOrganizations)
       .order("name"),
-    supabase
-      .from("units")
-      .select("id,name,unit_type,parent_unit_id")
-      .eq("organization_id", organizationId)
-      .eq("unit_type", "congregation")
-      .eq("active", true)
-      .order("name"),
+    supabase.rpc("list_manageable_congregations", {
+      target_organization_id: organizationId,
+    }),
     supabase.rpc("list_manageable_people", {
       target_organization_id: organizationId,
       target_unit_id: unitFilter || undefined,
