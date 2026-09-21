@@ -17,8 +17,8 @@ export default async function ApprovalsPage() {
     .limit(100);
 
   const requestIds = (requests ?? []).map((request) => request.id);
-  const unitIds = [...new Set((requests ?? []).map((request) => request.requested_unit_id).filter(Boolean))];
-  const roleIds = [...new Set((requests ?? []).map((request) => request.requested_role_id).filter(Boolean))];
+  const unitIds = [...new Set((requests ?? []).map((request) => request.requested_unit_id).filter((value): value is string => Boolean(value)))];
+  const roleIds = [...new Set((requests ?? []).map((request) => request.requested_role_id).filter((value): value is string => Boolean(value)))];
 
   const [{ data: units }, { data: roles }, { data: steps }] = await Promise.all([
     unitIds.length
