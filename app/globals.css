@@ -881,3 +881,170 @@ button, input, select { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   .homeButton,.homeQuickCard,.homeTextLink span,.topbar { transition:none; }
 }
+
+
+/* Licensed Harpa public experience */
+.hymnalHero {
+  position:relative;
+  overflow:hidden;
+  margin-top:14px;
+  background:
+    radial-gradient(circle at 78% 18%,rgba(213,173,79,.19),transparent 30%),
+    linear-gradient(120deg,#0a2341,#123758 62%,#1a496a);
+  color:white;
+}
+.hymnalHero::after {
+  content:"";
+  position:absolute; inset:0; pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:linear-gradient(to bottom,black,transparent 90%);
+}
+.hymnalHeroInner {
+  position:relative; z-index:1;
+  min-height:520px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 330px;
+  gap:72px;
+  align-items:center;
+  padding:64px 0;
+}
+.hymnalHero .eyebrow { color:#e0c77f; }
+.hymnalHero h1 {
+  max-width:760px;
+  margin:12px 0 18px;
+  font-size:clamp(48px,7vw,82px);
+  line-height:.96;
+  letter-spacing:-.06em;
+}
+.hymnalHero p {
+  max-width:700px;
+  margin:0;
+  color:#c5d2df;
+  font-size:18px;
+  line-height:1.65;
+}
+.hymnalSearchPreview {
+  max-width:650px;
+  min-height:68px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:13px;
+  align-items:center;
+  margin-top:30px;
+  padding:10px 11px 10px 16px;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:17px;
+  background:rgba(255,255,255,.075);
+  backdrop-filter:blur(9px);
+}
+.hymnalSearchPreview > span { color:#e0c77f; font-size:21px; }
+.hymnalSearchPreview > div { display:flex; flex-direction:column; gap:3px; }
+.hymnalSearchPreview small { color:#91a5b8; font-size:8px; font-weight:900; letter-spacing:.1em; }
+.hymnalSearchPreview strong { font-size:14px; }
+.hymnalSearchPreview button {
+  min-height:46px;
+  padding:0 17px;
+  border:0;
+  border-radius:12px;
+  background:#e0bd68;
+  color:#0b2447;
+  font-weight:900;
+}
+.hymnalMetaLine {
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+  margin-top:23px;
+  color:#9fb1c2;
+  font-size:11px;
+}
+.hymnalMetaLine strong { color:#edf3f8; }
+.hymnalCoverMock {
+  justify-self:center;
+  width:245px;
+  aspect-ratio:3/4;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:28px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:8px 24px 24px 8px;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.16),transparent 12%),
+    linear-gradient(145deg,#173e61,#0a2038);
+  box-shadow:0 34px 80px rgba(0,0,0,.34);
+  transform:rotate(4deg);
+}
+.hymnalCoverMock::before {
+  content:"";
+  position:absolute;
+  width:205px;
+  height:1px;
+  background:rgba(213,173,79,.4);
+  transform:translateY(-60px);
+}
+.hymnalCoverCross {
+  width:54px; height:54px;
+  display:grid; place-items:center;
+  margin-bottom:26px;
+  border:1px solid rgba(213,173,79,.55);
+  border-radius:50%;
+  color:#e3c571;
+}
+.hymnalCoverMock > span { color:#d9bb67; font-size:13px; font-weight:900; letter-spacing:.28em; }
+.hymnalCoverMock > strong { margin-top:3px; font-size:38px; letter-spacing:.05em; }
+.hymnalCoverMock > small { margin-top:20px; color:#8fa3b6; font-size:9px; letter-spacing:.08em; text-transform:uppercase; }
+
+.hymnalContent { padding:88px 0 110px; }
+.hymnalHighlights {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin:30px 0 34px;
+}
+.hymnalHighlights article {
+  min-height:86px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:14px;
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:white;
+}
+.hymnalHighlights article > span {
+  width:48px; height:48px;
+  display:grid; place-items:center;
+  border-radius:12px;
+  background:#0b2447;
+  color:white;
+  font-size:13px;
+  font-weight:900;
+}
+.hymnalHighlights article > div { display:flex; flex-direction:column; gap:3px; min-width:0; }
+.hymnalHighlights small { color:#9c7a2d; font-size:8px; font-weight:900; letter-spacing:.1em; }
+.hymnalHighlights strong { color:#21344b; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.hymnalHighlights i { color:#a4adb8; font-style:normal; }
+.rightsCardLicensed { border-color:#bbd9c6; background:#f2faf5; }
+.rightsBadgeLicensed { background:#dcefe3; color:#2c6948; }
+
+@media (max-width:800px) {
+  .hymnalHeroInner { grid-template-columns:1fr; gap:28px; text-align:center; }
+  .hymnalHero p,.hymnalSearchPreview { margin-left:auto; margin-right:auto; }
+  .hymnalMetaLine { justify-content:center; }
+  .hymnalCoverMock { width:205px; transform:rotate(2deg); }
+}
+@media (max-width:560px) {
+  .hymnalHero { margin-top:8px; }
+  .hymnalHeroInner { min-height:auto; padding:48px 0 42px; }
+  .hymnalHero h1 { font-size:clamp(46px,13vw,62px); }
+  .hymnalHero p { font-size:15px; }
+  .hymnalSearchPreview { grid-template-columns:auto 1fr; }
+  .hymnalSearchPreview button { grid-column:1/-1; width:100%; }
+  .hymnalMetaLine { display:grid; grid-template-columns:1fr; gap:6px; }
+  .hymnalHighlights { grid-template-columns:1fr; }
+  .hymnalContent { padding-top:64px; }
+}
