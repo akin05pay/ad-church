@@ -38,6 +38,10 @@ export default async function AdminPage() {
       </p>
 
       <div className="adminGrid">
+        <Link className="privateCard" href="/admin/culto">
+          <strong>Operação do culto</strong>
+          <span>Publicar Bíblia, Harpa e avisos em tempo real para os celulares.</span>
+        </Link>
         <Link className="privateCard" href="/admin/aprovacoes">
           <strong>Aprovações</strong>
           <span>Revisar pedidos de vínculo e executar a etapa hierárquica permitida.</span>
@@ -45,10 +49,6 @@ export default async function AdminPage() {
         <Link className="privateCard" href="/admin/importacoes">
           <strong>Importações</strong>
           <span>Preparar congregações e membros em staging antes de aplicar ao cadastro oficial.</span>
-        </Link>
-        <Link className="privateCard" href="/culto">
-          <strong>Modo culto</strong>
-          <span>Acompanhamento público já conectado ao Realtime; console de operação entra na próxima camada.</span>
         </Link>
       </div>
     </main>

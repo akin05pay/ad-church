@@ -36,10 +36,9 @@ type WorshipItem = {
   };
 };
 
-export function WorshipLive() {
+export function WorshipLive({ slug }: { slug?: string }) {
   const configured = isSupabaseBrowserConfigured();
   const supabase = useMemo(() => (configured ? createClient() : null), [configured]);
-
   const [session, setSession] = useState<WorshipSession | null>(null);
   const [items, setItems] = useState<WorshipItem[]>([]);
   const [loading, setLoading] = useState(configured);
@@ -50,10 +49,16 @@ export function WorshipLive() {
       return;
     }
 
-    const { data: liveSession } = await supabase
+    let sessionQuery = supabase
       .from("worship_sessions")
       .select("id,title,public_slug,starts_at")
-      .eq("status", "live")
+      .eq("status", "live");
+
+    if (slug) {
+      sessionQuery = sessionQuery.eq("public_slug", slug);
+    }
+
+    const { data: liveSession } = await sessionQuery
       .order("starts_at", { ascending: false })
       .limit(1)
       .maybeSingle();
@@ -79,7 +84,7 @@ export function WorshipLive() {
     setSession(liveSession as WorshipSession);
     setItems((liveItems ?? []) as unknown as WorshipItem[]);
     setLoading(false);
-  }, [supabase]);
+  }, [slug, supabase]);
 
   useEffect(() => {
     if (!supabase) {
@@ -90,7 +95,7 @@ export function WorshipLive() {
     void load();
 
     const channel = supabase
-      .channel("public-worship-live")
+      .channel(`public-worship-live:${slug ?? "latest"}`)
       .on(
         "postgres_changes",
         { event: "*", schema: "public", table: "worship_sessions" },
@@ -106,38 +111,18 @@ export function WorshipLive() {
     return () => {
       void supabase.removeChannel(channel);
     };
-  }, [load, supabase]);
+  }, [load, slug, supabase]);
 
   const scripture = items.find((item) => item.item_type === "scripture") ?? null;
   const hymn = items.find((item) => item.item_type === "hymn") ?? null;
+  const notice = items.find((item) => item.item_type === "notice") ?? null;
 
   if (!configured) {
     return (
-      <>
-        <div className="notice">
-          <strong>Modo de demonstração</strong>
-          <span>
-            A interface pública está funcionando. O Realtime será ativado automaticamente
-            quando as variáveis do Supabase forem configuradas na Vercel.
-          </span>
-        </div>
-
-        <div className="worshipGrid">
-          <article className="worshipCard">
-            <span className="cardLabel">LEITURA DE EXEMPLO</span>
-            <h2>João 3:16</h2>
-            <p>Abra o leitor bíblico para navegar pelo capítulo e pelos versículos.</p>
-            <Link href="/biblia/john/3?v=16">Abrir leitor bíblico →</Link>
-          </article>
-
-          <article className="worshipCard">
-            <span className="cardLabel">HARPA CRISTÃ</span>
-            <h2>291 · A Mensagem da Cruz</h2>
-            <p>Exemplo visual do acompanhamento de louvor no Modo Culto.</p>
-            <Link href="/hinarios">Abrir Harpa Cristã →</Link>
-          </article>
-        </div>
-      </>
+      <div className="notice">
+        <strong>Conexão temporariamente indisponível</strong>
+        <span>A Bíblia e a Harpa continuam acessíveis pela navegação pública.</span>
+      </div>
     );
   }
 
@@ -153,21 +138,40 @@ export function WorshipLive() {
   if (!session) {
     return (
       <div className="notice">
-        <strong>Nenhum culto está sendo transmitido pelo modo acompanhamento agora.</strong>
-        <span>Você ainda pode abrir a Bíblia ou os hinários sem login.</span>
+        <strong>{slug ? "Este culto não está ao vivo agora." : "Nenhum culto está ao vivo agora."}</strong>
+        <span>Você ainda pode abrir a Bíblia ou a Harpa sem login.</span>
       </div>
     );
   }
 
+  const scriptureHref =
+    scripture?.scripture_passages?.external_reference ?? "/biblia";
+  const hymnHref = hymn?.hymns?.external_reference ?? "/hinarios";
+
   return (
     <>
-      <div className="notice">
-        <strong>{session.title}</strong>
-        <span>Atualizações desta tela chegam automaticamente enquanto o culto estiver ao vivo.</span>
+      <div className="worshipLiveHeader">
+        <div>
+          <span className="livePill"><i /> AO VIVO</span>
+          <h2>{session.title}</h2>
+          <p>Atualizações desta tela chegam automaticamente.</p>
+        </div>
+        {!slug && (
+          <Link className="worshipSpecificLink" href={`/culto/${session.public_slug}`}>
+            Abrir link deste culto →
+          </Link>
+        )}
       </div>
 
+      {notice?.label && (
+        <div className="worshipNotice">
+          <span>AVISO</span>
+          <strong>{notice.label}</strong>
+        </div>
+      )}
+
       <div className="worshipGrid">
-        <article className="worshipCard">
+        <article className="worshipCard worshipCardPrimary">
           <span className="cardLabel">LEITURA ATUAL</span>
           {scripture?.scripture_passages ? (
             <>
@@ -181,9 +185,7 @@ export function WorshipLive() {
                   ? `–${scripture.scripture_passages.verse_end}`
                   : ""}
               </h2>
-              {scripture.scripture_passages.content_text && (
-                <p>{scripture.scripture_passages.content_text}</p>
-              )}
+              <p>Toque para abrir a passagem no leitor bíblico.</p>
             </>
           ) : (
             <>
@@ -191,18 +193,18 @@ export function WorshipLive() {
               <p>O operador ainda não definiu uma passagem atual.</p>
             </>
           )}
-          <Link href="/biblia">Abrir leitor bíblico →</Link>
+          <Link href={scriptureHref}>Abrir leitor bíblico →</Link>
         </article>
 
-        <article className="worshipCard">
-          <span className="cardLabel">HINO ATUAL</span>
+        <article className="worshipCard worshipCardHymn">
+          <span className="cardLabel">HARPA CRISTÃ</span>
           {hymn?.hymns ? (
             <>
               <h2>
                 {hymn.hymns.hymn_number ? `${hymn.hymns.hymn_number} · ` : ""}
                 {hymn.hymns.title}
               </h2>
-              {hymn.hymns.lyrics_text && <p>{hymn.hymns.lyrics_text}</p>}
+              <p>Toque para abrir o hinário e acompanhar o louvor.</p>
             </>
           ) : (
             <>
@@ -210,7 +212,7 @@ export function WorshipLive() {
               <p>O operador ainda não definiu um hino atual.</p>
             </>
           )}
-          <Link href="/hinarios">Abrir hinários →</Link>
+          <Link href={hymnHref}>Abrir Harpa Cristã →</Link>
         </article>
       </div>
     </>
