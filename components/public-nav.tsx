@@ -19,7 +19,7 @@ export function PublicNav() {
           <span className="navLiveDot" aria-hidden="true" />
           Culto
         </Link>
-        <Link href="/login" className="navLogin">Minha Igreja</Link>
+        <Link href="/app" className="navLogin">Minha Igreja</Link>
       </nav>
     </header>
   );

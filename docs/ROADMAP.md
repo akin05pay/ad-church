@@ -44,7 +44,8 @@ O AD Church não deve duplicar plataformas maduras. YouTube continua transmitind
 - Papéis + permissões + escopo.
 - Aprovação hierárquica.
 - RLS por escopo.
-- Bootstrap do administrador técnico.
+- Bootstrap do administrador raiz.
+- Convites administrativos com teto hierárquico.
 - Staging/importação e reconciliação de cadastro.
 
 **Dependência externa:** planilhas oficiais das congregações e membros.
@@ -56,6 +57,7 @@ O AD Church não deve duplicar plataformas maduras. YouTube continua transmitind
 - Zoom/Google Meet/YouTube como provedores externos.
 - Tabela online_meetings com RLS.
 - Visibilidade: pública, autenticada ou membros da unidade.
+- Reuniões autenticadas restritas à organização do usuário.
 - Permissão online.manage por escopo.
 
 ### Próximos itens desta fase
@@ -70,14 +72,24 @@ O AD Church não deve duplicar plataformas maduras. YouTube continua transmitind
 
 ## Fase 4 — Beta congregacional Setor 04 — EM ANDAMENTO
 
+### Concluído nesta fase
+
 - Administração de pessoas e vínculos por escopo.
 - Cadastro manual de pessoa sem obrigar conta de login.
 - Tipos de vínculo: visitante, frequentador, novo convertido, membro, obreiro e líder.
 - Ativação, inativação e transferência entre congregações com auditoria.
+- Minha Igreja personalizada após login.
+- Navegação mobile própria da área do membro.
+- Tela de perfil com conta, cadastro, vínculos e funções.
+- Congregação e setor exibidos conforme o vínculo aprovado.
+- Próximos encontros online filtrados por organização, vínculo e RLS.
+- Funções administrativas e ministérios do contexto exibidos sem misturar vínculo e permissão.
+
+### Próximos itens
+
 - Carregar cadastro oficial das 43 congregações.
 - Carregar/reconciliar membros.
-- Minha Igreja personalizada.
-- Ministérios.
+- Associações de membros a ministérios.
 - Grupos.
 - Eventos e agenda.
 - EBD.
@@ -138,5 +150,5 @@ O piloto está pronto quando:
 4. Minha Igreja muda conforme a congregação;
 5. líderes publicam evento/encontro/aviso;
 6. encontros online respeitam público e escopo;
-7. RLS impede leitura cruzada entre congregações;
+7. RLS impede leitura cruzada entre organizações e congregações;
 8. logs permitem auditar concessões e ações administrativas.

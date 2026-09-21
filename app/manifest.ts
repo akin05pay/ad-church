@@ -2,10 +2,12 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
+    id: "/",
     name: "AD Church",
     short_name: "AD Church",
-    description: "Bíblia, hinários e vida congregacional.",
+    description: "Bíblia, Harpa, culto e vida congregacional.",
     start_url: "/",
+    scope: "/",
     display: "standalone",
     background_color: "#f7f5ef",
     theme_color: "#0b2447",
