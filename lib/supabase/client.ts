@@ -1,4 +1,5 @@
 import { createBrowserClient } from "@supabase/ssr";
+import type { Database } from "@/lib/supabase/database.types";
 
 export function isSupabaseBrowserConfigured() {
   return Boolean(
@@ -15,5 +16,5 @@ export function createClient() {
     throw new Error("AD Church Supabase is not configured.");
   }
 
-  return createBrowserClient(url, key);
+  return createBrowserClient<Database>(url, key);
 }

@@ -1,9 +1,10 @@
 # AD Church
 
-Foundation for a multi-congregational PWA with a public worship layer and an authenticated church-management layer.
+Multi-congregational PWA for public worship participation and authenticated church life.
 
 ## Public routes
 
+- `/`
 - `/biblia`
 - `/hinarios`
 - `/culto`
@@ -13,26 +14,70 @@ Foundation for a multi-congregational PWA with a public worship layer and an aut
 - `/app`
 - `/admin`
 
-## Supabase
+## Canonical infrastructure
 
-AD Church uses its own isolated Supabase project:
+### Supabase
+
+AD Church uses one isolated Supabase project owned by the dedicated AD Church account/organization:
+
+- Project ref: `srrmxusgsgcmiqrbmhfl`
+- Region: `us-east-2`
+- PostgreSQL: 17
+- GitHub repository: `akin05pay/ad-church`
+
+This is the canonical backend for AD Church.
+
+Never point AD Church at any Agrinvest/Greenvest project, database, Auth tenant, Storage bucket, Edge Function, API key, migration history, or environment variable.
+
+### Vercel
+
+The application is connected through the Vercel Git integration to the dedicated Vercel account/project:
 
 - Project: `ad-church`
-- Project ref: `lesyrrojusamejgdzfhk`
-- Region: `sa-east-1`
+- Repository: `akin05pay/ad-church`
+- Preview branch: `codex/foundation-0.2`
 
-The application must never use Agrinvest/Greenvest credentials, tables, Auth users, Storage, Functions, migrations or project identifiers.
+The stable `ad-church.vercel.app` alias remains tied to production. Branch previews are used for review before promotion.
 
-Real environment values are intentionally excluded from Git. Copy `.env.example` to `.env.local` and provide only the AD Church Supabase URL and publishable key.
+## Environment variables
 
-Local database workflow after installing Supabase CLI and Docker:
+Real values are intentionally not committed.
 
-```bash
-supabase start
-supabase db reset
+Required in local development and Vercel:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 ```
 
-App setup:
+Both values must come from Supabase project `srrmxusgsgcmiqrbmhfl` only.
+
+## Database
+
+The schema is versioned in `supabase/migrations`.
+
+Current foundation includes:
+
+- organizations and hierarchical units;
+- people, profiles and memberships;
+- roles, permissions and scoped role assignments;
+- access requests and approval workflows;
+- ministries;
+- audit logs;
+- Bible source registry;
+- hymnals and hymns;
+- worship sessions/items with Realtime;
+- member/congregation import staging and reconciliation.
+
+Generated database types live in:
+
+```text
+lib/supabase/database.types.ts
+```
+
+Regenerate them after schema changes.
+
+## Local setup
 
 ```bash
 npm install
@@ -40,4 +85,11 @@ cp .env.example .env.local
 npm run dev
 ```
 
-The migrations in `supabase/migrations` mirror the current AD Church foundation. Read `docs/MASTER_SPEC.md` before implementing new modules.
+For local Supabase CLI/Docker development:
+
+```bash
+supabase start
+supabase db reset
+```
+
+Read `docs/MASTER_SPEC.md`, `docs/ACCESS_MODEL.md`, and `docs/IMPORT_PIPELINE.md` before implementing new modules.
