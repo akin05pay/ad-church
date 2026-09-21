@@ -42,6 +42,10 @@ export default async function AdminPage() {
           <strong>Equipe e hierarquia</strong>
           <span>Criar admins, aprovar papéis, suspender acessos e administrar a cadeia de autoridade.</span>
         </Link>
+        <Link className="privateCard" href="/admin/pessoas">
+          <strong>Pessoas e vínculos</strong>
+          <span>Cadastrar pessoas, classificar vínculos, ativar, inativar e transferir entre congregações.</span>
+        </Link>
         <Link className="privateCard" href="/admin/culto">
           <strong>Operação do culto</strong>
           <span>Publicar Bíblia, Harpa e avisos em tempo real para os celulares.</span>
