@@ -1066,6 +1066,7 @@ export type Database = {
         Args: { target_batch_id: string }
         Returns: Json
       }
+      claim_initial_admin: { Args: never; Returns: Json }
       decide_access_request_step: {
         Args: { decision: string; target_request_id: string }
         Returns: string
