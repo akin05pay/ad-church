@@ -1230,6 +1230,18 @@ export type Database = {
       }
       claim_initial_admin: { Args: never; Returns: Json }
       claim_role_invitations: { Args: never; Returns: Json }
+      create_person_with_membership: {
+        Args: {
+          person_birth_date?: string
+          person_email?: string
+          person_full_name: string
+          person_phone?: string
+          target_membership_type?: string
+          target_organization_id: string
+          target_unit_id: string
+        }
+        Returns: string
+      }
       create_role_invitation: {
         Args: {
           target_email: string
@@ -1247,6 +1259,28 @@ export type Database = {
       decide_role_invitation: {
         Args: { decision: string; target_invitation_id: string }
         Returns: string
+      }
+      list_manageable_people: {
+        Args: {
+          result_limit?: number
+          search_text?: string
+          target_organization_id: string
+          target_unit_id?: string
+        }
+        Returns: {
+          birth_date: string
+          created_at: string
+          email: string
+          full_name: string
+          has_user_account: boolean
+          membership_id: string
+          membership_status: string
+          membership_type: string
+          person_id: string
+          phone: string
+          unit_id: string
+          unit_name: string
+        }[]
       }
       list_manageable_team: {
         Args: { target_organization_id: string }
@@ -1270,8 +1304,30 @@ export type Database = {
         Args: { target_batch_id: string }
         Returns: Json
       }
+      set_membership_details: {
+        Args: {
+          target_membership_id: string
+          target_membership_type: string
+          target_status: string
+        }
+        Returns: string
+      }
       set_role_assignment_status: {
         Args: { new_status: string; target_assignment_id: string }
+        Returns: string
+      }
+      transfer_membership: {
+        Args: { target_membership_id: string; target_unit_id: string }
+        Returns: string
+      }
+      update_person_record: {
+        Args: {
+          person_birth_date?: string
+          person_email?: string
+          person_full_name: string
+          person_phone?: string
+          target_person_id: string
+        }
         Returns: string
       }
     }
