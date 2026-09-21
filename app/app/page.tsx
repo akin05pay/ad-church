@@ -21,7 +21,7 @@ export default async function PrivateAppPage() {
 
   const { data: requests } = await supabase
     .from("access_requests")
-    .select("id,status,created_at")
+    .select("id,status,match_status,created_at")
     .eq("user_id", userId)
     .order("created_at", { ascending: false })
     .limit(3);
@@ -42,7 +42,8 @@ export default async function PrivateAppPage() {
       {!linked && (
         <div className="notice">
           <strong>Conta ainda não vinculada a uma pessoa da igreja.</strong>
-          <span>Na próxima etapa, você escolherá sua congregação e solicitará o vínculo para aprovação da secretaria responsável.</span>
+          <span>Escolha sua congregação e envie o vínculo para aprovação da secretaria responsável.</span>
+          <Link href="/app/vinculo"><strong>Solicitar vínculo →</strong></Link>
         </div>
       )}
 
@@ -58,7 +59,10 @@ export default async function PrivateAppPage() {
           <div className="list">
             {requests.map((request) => (
               <article className="listItem" key={request.id}>
-                <div><strong>{request.status}</strong><p>{new Date(request.created_at).toLocaleString("pt-BR")}</p></div>
+                <div>
+                  <strong>{request.status}</strong>
+                  <p>Conciliação: {request.match_status} · {new Date(request.created_at).toLocaleString("pt-BR")}</p>
+                </div>
               </article>
             ))}
           </div>

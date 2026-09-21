@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
@@ -23,6 +24,7 @@ export default async function AdminPage() {
         <div className="eyebrow">ADMINISTRAÇÃO</div>
         <h1>Acesso ainda não concedido</h1>
         <p>Esta área exige um papel administrativo aprovado pela hierarquia correspondente.</p>
+        <p><Link href="/app">Voltar para Minha Igreja</Link></p>
       </main>
     );
   }
@@ -31,7 +33,24 @@ export default async function AdminPage() {
     <main className="privateShell">
       <div className="eyebrow">ADMINISTRAÇÃO</div>
       <h1>Painel AD Church</h1>
-      <p>Você possui {assignments.length} atribuição(ões) ativa(s). Os módulos exibidos aqui serão filtrados por permissão e escopo.</p>
+      <p>
+        Você possui {assignments.length} atribuição(ões) ativa(s). O banco filtra cada módulo pelo seu papel e escopo.
+      </p>
+
+      <div className="adminGrid">
+        <Link className="privateCard" href="/admin/aprovacoes">
+          <strong>Aprovações</strong>
+          <span>Revisar pedidos de vínculo e executar a etapa hierárquica permitida.</span>
+        </Link>
+        <Link className="privateCard" href="/admin/importacoes">
+          <strong>Importações</strong>
+          <span>Preparar congregações e membros em staging antes de aplicar ao cadastro oficial.</span>
+        </Link>
+        <Link className="privateCard" href="/culto">
+          <strong>Modo culto</strong>
+          <span>Acompanhamento público já conectado ao Realtime; console de operação entra na próxima camada.</span>
+        </Link>
+      </div>
     </main>
   );
 }

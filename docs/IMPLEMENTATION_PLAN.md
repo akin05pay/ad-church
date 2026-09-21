@@ -1,33 +1,41 @@
 # Implementation plan
 
-## Foundation 0.1 — included in this package
+## Foundation 0.1 — completed
 - Next.js App Router skeleton.
 - PWA manifest and public-only service-worker cache.
 - Public Bible/Hymnal/Worship routes.
 - Private route boundary.
 - Supabase SSR client scaffolding.
-- Versioned local Supabase migrations.
+- Versioned migrations.
 - Multi-organization/unit/access-request model.
-- No remote database connection.
 
-## Foundation 0.2
-- Create dedicated AD Church Supabase project after explicit organization/cost confirmation.
-- Apply migrations to local Supabase first.
-- Run security/performance advisors.
-- Generate TypeScript database types.
-- Implement login/signup/magic-link.
-- Implement membership request and approval workflow.
+## Foundation 0.2 — completed
+- Dedicated AD Church Supabase project.
+- Auth login/signup/logout.
+- Hierarchical organization, congregation, ministry, roles and permissions.
+- RLS-first authorization.
+- Worship Follow Mode with Realtime.
+- GitHub CI with TypeScript and production build validation.
 
-## Beta 0.3
-- Import 43 congregations from master registry.
-- Ministry hierarchy.
-- Reconciliation against church-provided member directory.
-- RLS permission functions and automated authorization tests.
+## Foundation / Beta 0.3 — prepared before receiving the real spreadsheets
+- Generic CSV parser with Portuguese/English header aliases.
+- Staging batches for congregation and member registries.
+- Templates for both official datasets.
+- Deterministic member reconciliation.
+- Manual review queue before any data is applied.
+- Scoped import permissions.
+- Self-service member-link request.
+- Hierarchical approval-step materialization.
+- Database-enforced approval by role and scope.
+- Final membership/role activation only after the last approval step.
+- Audit logging for approvals and applied imports.
+
+### Waiting only for real data
+When the official congregation/member files arrive, map any new column names as aliases and load them through the existing staging flow. No architecture rewrite should be necessary.
 
 ## Worship 0.4
 - Authorized worship operator console.
 - Public session slug/QR.
-- Supabase Realtime sync for current scripture/hymn.
 - Licensed Bible/hymnal provider integration.
 - Offline strategy for legally distributable content.
 
@@ -37,13 +45,12 @@
 - Notices.
 - Ministry membership and schedules.
 
-## Remote foundation status — 2026-09-20
+## Remote foundation status — 2026-09-21
 
 - Supabase project: `ad-church`
 - Project ref: `lesyrrojusamejgdzfhk`
 - Region: `sa-east-1`
-- This project is isolated from Agrinvest/Greenvest. No database, Auth users, Storage, Functions, keys or migrations are shared.
-- Security advisor after hardening: zero security lints.
+- Isolated from Agrinvest/Greenvest.
 - Public routes: `/biblia`, `/hinarios`, `/culto`.
 - Protected routes: `/app`, `/admin`.
-- Worship Realtime is enabled only for `worship_sessions` and `worship_items`.
+- Import/admin additions are versioned as migrations and must pass CI/security advisors before merge.
