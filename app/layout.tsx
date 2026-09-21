@@ -3,9 +3,20 @@ import "./globals.css";
 import { PwaRegister } from "@/components/pwa-register";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://assembleia.church"),
   title: { default: "AD Church", template: "%s · AD Church" },
-  description: "Bíblia, hinários e vida congregacional em uma única experiência.",
+  description: "Bíblia, Harpa, culto e vida congregacional conectados à Assembleia de Deus Online.",
   applicationName: "AD Church",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: "AD Church",
+    title: "AD Church",
+    description: "Bíblia, Harpa, culto e vida congregacional no mesmo caminho.",
+  },
 };
 
 export const viewport: Viewport = {
