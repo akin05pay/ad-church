@@ -102,16 +102,18 @@ export async function stageImport(formData: FormData) {
 
   if (batchError || !batch) throw batchError ?? new Error("Não foi possível criar o lote.");
 
-  const mapped =
-    entityType === "members"
-      ? records.map((row, index) => memberRow(row, batch.id, index + 2))
-      : records.map((row, index) => unitRow(row, batch.id, index + 2));
-
-  const table = entityType === "members" ? "member_import_rows" : "unit_import_rows";
-
-  for (const part of chunk(mapped, CHUNK_SIZE)) {
-    const { error } = await supabase.from(table).insert(part);
-    if (error) throw error;
+  if (entityType === "members") {
+    const mapped = records.map((row, index) => memberRow(row, batch.id, index + 2));
+    for (const part of chunk(mapped, CHUNK_SIZE)) {
+      const { error } = await supabase.from("member_import_rows").insert(part);
+      if (error) throw error;
+    }
+  } else {
+    const mapped = records.map((row, index) => unitRow(row, batch.id, index + 2));
+    for (const part of chunk(mapped, CHUNK_SIZE)) {
+      const { error } = await supabase.from("unit_import_rows").insert(part);
+      if (error) throw error;
+    }
   }
 
   revalidatePath("/admin/importacoes");
