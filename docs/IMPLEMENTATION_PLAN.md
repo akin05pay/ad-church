@@ -57,7 +57,23 @@ When the official congregation/member files arrive, new column names can be mapp
 - online.manage permission with RLS.
 - Next: admin publishing console, ministry/group audiences and reminders.
 
-## Congregational 0.6 — next
+## Governance 0.6 — completed
+- Non-delegable platform_owner root role.
+- Authority ranking and hierarchy ceiling.
+- Scoped admin invitations, approvals and moderation.
+- /admin/equipe.
+- Audit logging for role grants, suspensions and revocations.
+
+## People administration 0.7 — in progress
+- /admin/pessoas.
+- Scoped searchable people registry.
+- Manual person creation without forcing an auth account.
+- Congregational membership type/status administration.
+- Transfer between congregations only when the actor can manage both source and destination.
+- Audit logging for person and membership mutations.
+- Internal RPC entrypoints remain in the private schema and are callable only through authenticated public wrappers.
+
+## Congregational 0.8 — next
 - Load 43 official congregations.
 - Reconcile member registry.
 - My Church.
