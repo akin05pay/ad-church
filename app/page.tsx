@@ -119,7 +119,7 @@ export default function HomePage() {
             <strong>YouTube · Zoom · Google Meet · Grupos</strong>
             <i>→</i>
           </Link>
-          <Link href="/login">
+          <Link href="/app">
             <span>AD CHURCH LOCAL</span>
             <strong>Congregação · EBD · Ministérios · Agenda · Cuidado</strong>
             <i>→</i>
@@ -178,7 +178,7 @@ export default function HomePage() {
             Ao entrar, a pessoa encontra sua congregação, os próximos cultos, avisos,
             EBD, ministérios, grupos e jornadas que realmente fazem parte da vida dela.
           </p>
-          <Link href="/login">Entrar em Minha Igreja →</Link>
+          <Link href="/app">Entrar em Minha Igreja →</Link>
         </article>
 
         <article>
@@ -207,7 +207,7 @@ export default function HomePage() {
           </div>
           <div className="editorialFinalActions">
             <Link href="/online">Conectar agora</Link>
-            <Link href="/login">Minha Igreja</Link>
+            <Link href="/app">Minha Igreja</Link>
           </div>
         </div>
       </section>
