@@ -18,6 +18,8 @@ export function MemberNav() {
           <Link href="/biblia">Bíblia</Link>
           <Link href="/hinarios">Harpa</Link>
           <Link href="/culto">Culto</Link>
+          <Link href="/app/agenda">Agenda</Link>
+          <Link href="/app/grupos">Grupos</Link>
           <Link href="/online">Online</Link>
           <Link href="/app/perfil">Perfil</Link>
         </nav>
@@ -31,7 +33,7 @@ export function MemberNav() {
         <Link href="/app"><span>⌂</span><small>Início</small></Link>
         <Link href="/biblia"><span>✦</span><small>Bíblia</small></Link>
         <Link href="/culto" className="memberBottomLive"><span>●</span><small>Culto</small></Link>
-        <Link href="/online"><span>↗</span><small>Online</small></Link>
+        <Link href="/app/agenda"><span>▦</span><small>Agenda</small></Link>
         <Link href="/app/perfil"><span>○</span><small>Perfil</small></Link>
       </nav>
     </>
