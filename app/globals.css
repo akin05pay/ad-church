@@ -2220,3 +2220,122 @@ button, input, select { font: inherit; }
     min-height:105px;
   }
 }
+
+
+/* Congregational 0.9 — agenda and groups */
+.agendaAdminShell,.groupsAdminShell { width:min(1320px,calc(100% - 30px)); }
+.agendaAdminGrid,.groupsAdminGrid {
+  display:grid;
+  grid-template-columns:360px minmax(0,1fr);
+  gap:14px;
+  margin-top:22px;
+  align-items:start;
+}
+.agendaAdminGrid > aside,.groupsAdminGrid > aside { position:sticky; top:88px; }
+.agendaAdminList,.groupsAdminList { display:grid; gap:10px; }
+.agendaAdminRow {
+  min-height:104px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 150px auto;
+  gap:18px;
+  align-items:center;
+  padding:14px 0;
+  border-top:1px solid var(--line);
+}
+.agendaAdminRow > div:first-child { min-width:0; display:flex; flex-direction:column; gap:5px; }
+.agendaAdminRow > div:first-child > span {
+  color:#8a6c2c; font-size:8px; font-weight:900; letter-spacing:.1em;
+}
+.agendaAdminRow strong { color:#26394e; }
+.agendaAdminRow small { color:#7a858f; line-height:1.45; }
+.agendaAdminMeta { display:flex; flex-direction:column; gap:6px; text-align:right; }
+.agendaAdminMeta span { color:#6f7b86; font-size:10px; }
+.agendaAdminMeta strong { color:#8a6c2c; font-size:9px; text-transform:uppercase; letter-spacing:.08em; }
+
+.memberAgendaList { border-top:1px solid #cfc9bd; }
+.memberAgendaList article {
+  min-height:170px;
+  display:grid;
+  grid-template-columns:220px minmax(0,1fr);
+  gap:34px;
+  align-items:center;
+  border-bottom:1px solid #cfc9bd;
+  padding:26px 0;
+}
+.memberAgendaDate { display:flex; flex-direction:column; gap:8px; }
+.memberAgendaDate strong { color:#203247; font-size:17px; text-transform:capitalize; }
+.memberAgendaDate span { color:#8a6c2c; font-size:22px; font-weight:800; }
+.memberAgendaBody > span {
+  color:#8a6c2c; font-size:8px; font-weight:900; letter-spacing:.12em; text-transform:uppercase;
+}
+.memberAgendaBody h3 { margin:7px 0 0; color:#10263f; font-size:30px; letter-spacing:-.035em; }
+.memberAgendaBody p { max-width:700px; margin:9px 0 0; color:#737f8a; line-height:1.55; }
+.memberAgendaBody small { display:block; margin-top:12px; color:#596878; }
+.memberGroupGrid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+.memberGroupGrid article {
+  min-height:260px;
+  display:flex;
+  flex-direction:column;
+  padding:24px;
+  border:1px solid #d2ccc0;
+  border-radius:17px;
+  background:#faf8f3;
+}
+.memberGroupGrid article > span {
+  color:#8a6c2c; font-size:8px; font-weight:900; letter-spacing:.12em; text-transform:uppercase;
+}
+.memberGroupGrid h3 { margin:22px 0 0; color:#17304a; font-size:26px; letter-spacing:-.035em; }
+.memberGroupGrid p { margin:10px 0 0; color:#77828c; font-size:12px; line-height:1.55; }
+.memberGroupGrid small { margin-top:auto; padding-top:22px; color:#76818b; }
+.memberGroupGrid article > strong { margin-top:10px; color:#2d6540; font-size:10px; }
+
+.groupAdminCard {
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#fff;
+}
+.groupAdminHeader {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+}
+.groupAdminHeader > div > span {
+  color:#8a6c2c; font-size:8px; font-weight:900; letter-spacing:.12em;
+}
+.groupAdminHeader h2 { margin:7px 0 0; color:#20354b; font-size:24px; letter-spacing:-.03em; }
+.groupAdminHeader p,.groupAdminDescription { color:#7b8792; font-size:11px; line-height:1.5; }
+.groupAdminMembers { margin-top:18px; border-top:1px solid var(--line); }
+.groupAdminMembers > div {
+  min-height:58px; display:flex; align-items:center; justify-content:space-between; gap:10px;
+  border-bottom:1px solid var(--line);
+}
+.groupAdminMembers > div > span { display:flex; flex-direction:column; gap:3px; }
+.groupAdminMembers strong { color:#304257; font-size:12px; }
+.groupAdminMembers small { color:#7d8892; font-size:9px; }
+.groupMemberAdd {
+  display:grid; grid-template-columns:minmax(0,1fr) 120px auto; gap:7px; margin-top:14px;
+}
+.groupMemberAdd select,.groupMemberAdd button {
+  min-height:40px; border:1px solid var(--line); border-radius:9px; background:white; padding:0 9px;
+}
+.groupMemberAdd button { background:#0b2447; color:white; font-weight:800; cursor:pointer; }
+.groupArchiveForm { margin-top:10px; }
+
+@media (max-width:1000px) {
+  .agendaAdminGrid,.groupsAdminGrid { grid-template-columns:1fr; }
+  .agendaAdminGrid > aside,.groupsAdminGrid > aside { position:static; }
+  .memberGroupGrid { grid-template-columns:1fr 1fr; }
+}
+@media (max-width:720px) {
+  .agendaAdminRow { grid-template-columns:1fr; }
+  .agendaAdminMeta { text-align:left; }
+  .memberAgendaList article { grid-template-columns:1fr; gap:14px; }
+  .memberGroupGrid { grid-template-columns:1fr; }
+  .groupMemberAdd { grid-template-columns:1fr; }
+}
