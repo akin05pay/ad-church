@@ -111,6 +111,8 @@ export default async function PrivateAppPage() {
           <Link href="/hinarios"><span>LOUVOR</span><strong>Abrir Harpa</strong><i>→</i></Link>
           <Link href="/culto"><span>AGORA</span><strong>Modo Culto</strong><i>→</i></Link>
           <Link href="/online"><span>ONLINE</span><strong>Encontros e transmissões</strong><i>→</i></Link>
+          <Link href="/app/agenda"><span>AGENDA</span><strong>Próximos eventos</strong><i>→</i></Link>
+          <Link href="/app/grupos"><span>COMUNIDADE</span><strong>Grupos e discipulado</strong><i>→</i></Link>
         </section>
 
         <section className="memberSection">
@@ -273,6 +275,8 @@ export default async function PrivateAppPage() {
         <Link href="/hinarios"><span>LOUVOR</span><strong>Abrir Harpa</strong><i>→</i></Link>
         <Link href="/culto"><span>AGORA</span><strong>Modo Culto</strong><i>→</i></Link>
         <Link href="/online"><span>ONLINE</span><strong>Encontros e transmissões</strong><i>→</i></Link>
+          <Link href="/app/agenda"><span>AGENDA</span><strong>Próximos eventos</strong><i>→</i></Link>
+          <Link href="/app/grupos"><span>COMUNIDADE</span><strong>Grupos e discipulado</strong><i>→</i></Link>
       </section>
 
       <section className="memberChurchContext">

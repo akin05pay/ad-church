@@ -267,6 +267,223 @@ export type Database = {
         }
         Relationships: []
       }
+      events: {
+        Row: {
+          address_line: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          ends_at: string | null
+          event_type: string
+          group_id: string | null
+          id: string
+          location_name: string | null
+          ministry_id: string | null
+          organization_id: string
+          starts_at: string
+          status: string
+          title: string
+          unit_id: string | null
+          updated_at: string
+          visibility: string
+        }
+        Insert: {
+          address_line?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          ends_at?: string | null
+          event_type?: string
+          group_id?: string | null
+          id?: string
+          location_name?: string | null
+          ministry_id?: string | null
+          organization_id: string
+          starts_at: string
+          status?: string
+          title: string
+          unit_id?: string | null
+          updated_at?: string
+          visibility?: string
+        }
+        Update: {
+          address_line?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          ends_at?: string | null
+          event_type?: string
+          group_id?: string | null
+          id?: string
+          location_name?: string | null
+          ministry_id?: string | null
+          organization_id?: string
+          starts_at?: string
+          status?: string
+          title?: string
+          unit_id?: string | null
+          updated_at?: string
+          visibility?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "events_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "events_ministry_id_fkey"
+            columns: ["ministry_id"]
+            isOneToOne: false
+            referencedRelation: "ministries"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "events_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "events_unit_id_fkey"
+            columns: ["unit_id"]
+            isOneToOne: false
+            referencedRelation: "units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      group_memberships: {
+        Row: {
+          approved_by: string | null
+          created_at: string
+          group_id: string
+          id: string
+          joined_at: string
+          person_id: string
+          role: string
+          status: string
+        }
+        Insert: {
+          approved_by?: string | null
+          created_at?: string
+          group_id: string
+          id?: string
+          joined_at?: string
+          person_id: string
+          role?: string
+          status?: string
+        }
+        Update: {
+          approved_by?: string | null
+          created_at?: string
+          group_id?: string
+          id?: string
+          joined_at?: string
+          person_id?: string
+          role?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "group_memberships_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "group_memberships_person_id_fkey"
+            columns: ["person_id"]
+            isOneToOne: false
+            referencedRelation: "people"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      groups: {
+        Row: {
+          active: boolean
+          created_at: string
+          created_by: string | null
+          description: string | null
+          group_type: string
+          id: string
+          leader_person_id: string | null
+          ministry_id: string | null
+          name: string
+          organization_id: string
+          slug: string
+          unit_id: string
+          updated_at: string
+          visibility: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          group_type?: string
+          id?: string
+          leader_person_id?: string | null
+          ministry_id?: string | null
+          name: string
+          organization_id: string
+          slug: string
+          unit_id: string
+          updated_at?: string
+          visibility?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          group_type?: string
+          id?: string
+          leader_person_id?: string | null
+          ministry_id?: string | null
+          name?: string
+          organization_id?: string
+          slug?: string
+          unit_id?: string
+          updated_at?: string
+          visibility?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "groups_leader_person_id_fkey"
+            columns: ["leader_person_id"]
+            isOneToOne: false
+            referencedRelation: "people"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "groups_ministry_id_fkey"
+            columns: ["ministry_id"]
+            isOneToOne: false
+            referencedRelation: "ministries"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "groups_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "groups_unit_id_fkey"
+            columns: ["unit_id"]
+            isOneToOne: false
+            referencedRelation: "units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       hymnals: {
         Row: {
           active: boolean
@@ -565,6 +782,54 @@ export type Database = {
             columns: ["unit_id"]
             isOneToOne: false
             referencedRelation: "units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ministry_memberships: {
+        Row: {
+          approved_by: string | null
+          created_at: string
+          id: string
+          joined_at: string
+          ministry_id: string
+          person_id: string
+          role: string
+          status: string
+        }
+        Insert: {
+          approved_by?: string | null
+          created_at?: string
+          id?: string
+          joined_at?: string
+          ministry_id: string
+          person_id: string
+          role?: string
+          status?: string
+        }
+        Update: {
+          approved_by?: string | null
+          created_at?: string
+          id?: string
+          joined_at?: string
+          ministry_id?: string
+          person_id?: string
+          role?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ministry_memberships_ministry_id_fkey"
+            columns: ["ministry_id"]
+            isOneToOne: false
+            referencedRelation: "ministries"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ministry_memberships_person_id_fkey"
+            columns: ["person_id"]
+            isOneToOne: false
+            referencedRelation: "people"
             referencedColumns: ["id"]
           },
         ]

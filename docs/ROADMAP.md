@@ -85,6 +85,19 @@ O AD Church não deve duplicar plataformas maduras. YouTube continua transmitind
 - Próximos encontros online filtrados por organização, vínculo e RLS.
 - Funções administrativas e ministérios do contexto exibidos sem misturar vínculo e permissão.
 
+### Concluído adicionalmente na 0.9
+
+- Modelo de grupos, classes, EBD e discipulado.
+- Participação em grupos com papel e status.
+- Participação em ministérios preparada no banco.
+- Agenda com cultos, EBD, reuniões, discipulado, ministérios e eventos.
+- Públicos da agenda: público, organização, unidade ou grupo.
+- Console /admin/agenda.
+- Console /admin/grupos.
+- Agenda do membro em /app/agenda.
+- Grupos do membro em /app/grupos.
+- Integridade de escopo validada também por triggers no banco.
+
 ### Próximos itens
 
 - Carregar cadastro oficial das 43 congregações.

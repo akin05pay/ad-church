@@ -46,6 +46,14 @@ export default async function AdminPage() {
           <strong>Pessoas e vínculos</strong>
           <span>Cadastrar pessoas, classificar vínculos, ativar, inativar e transferir entre congregações.</span>
         </Link>
+        <Link className="privateCard" href="/admin/agenda">
+          <strong>Agenda e eventos</strong>
+          <span>Publicar cultos, EBD, reuniões e eventos com público definido por escopo.</span>
+        </Link>
+        <Link className="privateCard" href="/admin/grupos">
+          <strong>Grupos e discipulado</strong>
+          <span>Criar grupos, classes e discipulados e administrar participantes.</span>
+        </Link>
         <Link className="privateCard" href="/admin/culto">
           <strong>Operação do culto</strong>
           <span>Publicar Bíblia, Harpa e avisos em tempo real para os celulares.</span>
