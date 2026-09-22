@@ -85,7 +85,14 @@ When the official congregation/member files arrive, new column names can be mapp
 - Unlinked-account onboarding and link-request progress.
 - Production canonical metadata points to https://assembleia.church.
 
-## Congregational 0.9 — next
+## Congregational 0.9 — in progress
+- Groups, classes, EBD and discipleship model.
+- Group memberships with scoped visibility.
+- Ministry-membership foundation.
+- Scoped events and agenda.
+- /admin/agenda and /admin/grupos.
+- /app/agenda and /app/grupos.
+- Database scope-integrity triggers for groups, participants and events.
 - Load 43 official congregations.
 - Reconcile member registry.
 - Member-to-ministry associations.
